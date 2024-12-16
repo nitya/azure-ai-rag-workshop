@@ -1,4 +1,6 @@
-# Build a RAG-Based Copilot on Azure AI Foundry
+# Introduction
+
+**Build a RAG-Based Copilot on Azure AI Foundry**
 
 ## 1. Objectives
 
@@ -40,18 +42,15 @@
     - **Contoso Web (UI)** is the website frontend providing the customer UI/UX.
     - **Contoso Chat (AI)** is the AI backend processing customer questions & returning relevant responses.
 
----
-
 ## 4. Data
 
 The Retrieval Augmented Generation (RAG) design pattern allows us to _customize the AI_ by enhancing the user prompt with _dynamically retrieved knowledge_ that grounds the responses in the provided context.
 Let's understand the shape of the data available to us.
 
-### 4.1 Customer Info
+??? quote "1. CUSTOMER INFO | See Sample Record (JSON) - _click to expand_" 
 
-This record represents _a single customer_, providing their profile information ("id", name, contact info) and their purchase history ("orders"). _This JSON data may be stored in a noSQL datbase like Azure CosmosDB and retrieved dynamically by the chat AI_.
+    This record represents _a single customer_, providing their profile information ("id", name, contact info) and their purchase history ("orders"). _This JSON data may be stored in a noSQL datbase like Azure CosmosDB and retrieved dynamically by the chat AI_.
 
-??? quote "Sample Customer Info Record (JSON) - _click to expand_" 
 
     ```json title=""
     {
@@ -104,15 +103,11 @@ This record represents _a single customer_, providing their profile information 
     }
     ```
 
+??? quote "1. PRODUCT MANUAL INFO | See Sample Record (Markdown) - _click to expand_" 
 
-### 4.2 Product Manual Info
+    This record represents a _single product_ in the retailer's catalog with extensive text (formatted as Markdown) covering information like brand, category, features, technical specs, user guide, cautions, warranty information, return policy, reviews, FAQ. _This information may be used for building the Contoso Web UI, and potentially for grounding responses related to richer QA later_. 
 
-This record represents a _single product_ in the retailer's catalog with extensive text (formatted as Markdown) covering information like brand, category, features, technical specs, user guide, cautions, warranty information, return policy, reviews, FAQ. _This information may be used for building the Contoso Web UI, and potentially for grounding responses related to richer QA later_. 
-
-
-??? quote "Sample Product Manual Info Record (Markdown) - _click to expand_" 
-
-    **The product info has been rendere as a Markmap for visual clarity**. Simply zoom in/out or pan in/out to explore the content. You can click on any node (circle) to expand/collapse its sub-tree. You may need to refresh or reload page to re-render the tree.
+    **The product info has been rendered as a Markmap for visual clarity**. Simply zoom in/out or pan in/out to explore the content. You can click on any node (circle) to expand/collapse its sub-tree. You may need to refresh or reload page to re-render the tree.
 
     ```markmap
 
@@ -334,17 +329,13 @@ This record represents a _single product_ in the retailer's catalog with extensi
 
     ```
 
+??? quote "1. PRODUCT CATALOG INFO | See Sample Record (CSV) - _click to expand_" 
 
-### 4.3 Product Catalog Index
+    This record represents a single product item in the **product catalog** database, with a unique product ID. The `products.csv` file contains a collection of these records, representing the entire Contoso Outdoors product catalog at a high level. 
 
-This record represents a single product item in the **product catalog** database, with a unique product ID. The `products.csv` file contains a collection of these records, representing the entire Contoso Outdoors product catalog at a high level. 
+    Each product ID has a corresponding "product manual" record that provides more extensive detail (e.g, in website pages). The product catalog entry itself contains just the _{id, name, price, category, brand, description}_ information required for creating product indexes and searching for matching results (for later retrieval) based on a customer query. 
 
-Each product ID has a corresponding "product manual" record that provides more extensive detail (e.g, in website pages). The product catalog entry itself contains just the _{id, name, price, category, brand, description}_ information required for creating product indexes and searching for matching results (for later retrieval) based on a customer query. 
-
-The catalog record below corresponds to the product manual record above.
-
-
-??? quote "Sample Product Catalog Entry (CSV) - _click to expand_" 
+    The catalog record below corresponds to the product manual record above.
 
     ```python title=""
     id = 1,
