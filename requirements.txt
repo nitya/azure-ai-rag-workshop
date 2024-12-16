@@ -2,4 +2,14 @@
 mkdocs-material
 mkdocs-markmap
 
-# Azure Tools
+# RAG Tutorial: Install Packages
+azure-ai-projects
+azure-ai-inference[prompts]
+azure-identity
+azure-search-documents
+pandas
+python-dotenv
+opentelemetry-api
+
+# Fix: Needed to resolve azure-monitor-opentelemetry
+azure-monitor-opentelemetry
