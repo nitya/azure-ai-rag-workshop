@@ -1188,15 +1188,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#5-interpreting-results" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Interpreting Results
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1465,15 +1456,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#5-interpreting-results" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Interpreting Results
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1660,115 +1642,6 @@ Evaluation<span class="w"> </span>results<span class="w"> </span>saved<span clas
 
 <span class="c1"># ----------------------------------------------</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="5-interpreting-results">5. Interpreting Results<a class="headerlink" href="#5-interpreting-results" title="Permanent link">¶</a></h2>
-<p>The console output may be truncated, but the results are also stored in a local JSON. Check out the <code>src.sample/api/myevalresults.json</code> for a sample file showing the outputs from a previous run. The snippet below reproduces one of the rows from those results for our observation:</p>
-<ol>
-<li>The <code>inputs.query</code> and <code>inputs.truth</code> are from the test input file</li>
-<li>The <code>outputs.context</code> reflects retrieved product documents used (RAG)</li>
-<li>The <code>outputs.response</code> gives the target models returned response</li>
-<li>The <code>outputs.groundedness.groundedness</code> has a rating of <strong>1</strong> (not grounded)</li>
-<li>The <code>outputs.groundedness.groundedness_reaason</code> explains why (context unused)</li>
-</ol>
-<p><em>Note</em>: While the response is not grounded in the context, it does in fact reflect our prompt template guidance to ask for clarifications on questions where the intent is not clear.</p>
-<div class="admonition info">
-<p class="admonition-title">Click to expand a view a sample row from <code>myevalresults.json</code></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"outputs.response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Could you please specify which tents you are comparing, or do you want information about a specific tent's waterproof features?"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"outputs.context"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to the joy of camping with the Alpine Explorer Tent! This robust, 8-person, 3-season marvel is from the responsible hands of the AlpineGear brand. Promising an enviable setup that is as straightforward as counting sheep, your camping experience is transformed into a breezy pastime. Looking for privacy? The detachable divider provides separate spaces at a moment's notice. Love a tent that breathes? The numerous mesh windows and adjustable vents fend off any condensation dragon trying to dampen your adventure fun. The waterproof assurance keeps you worry-free during unexpected rain dances. With a built-in gear loft to stash away your outdoor essentials, the Alpine Explorer Tent emerges as a smooth balance of privacy, comfort, and convenience. Simply put, this tent isn't just a shelter - it's your second home in the heart of nature! Whether you're a seasoned camper or a nature-loving novice, this tent makes exploring the outdoors a joyous journey."</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alpine-explorer-tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpine Explorer Tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/products/alpine-explorer-tent"</span>
-<span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Introducing the OutdoorLiving SkyView 2-Person Tent, a perfect companion for your camping and hiking adventures. This tent offers a spacious interior that houses two people comfortably, with room to spare. Crafted from durable waterproof materials to shield you from the elements, it is the fortress you need in the wild. Setup is a breeze thanks to its intuitive design and color-coded poles, while two large doors allow for easy access. Stay organized with interior pockets, and store additional gear in its two vestibules. The tent also features mesh panels for effective ventilation, and it comes with a rainfly for extra weather protection. Light enough for on-the-go adventurers, it packs compactly into a carrying bag for seamless transportation. Reflective guy lines ensure visibility at night for added safety, and the tent stands freely for versatile placement. Experience the reliability of double-stitched seams that guarantee increased durability, and rest easy under the stars with OutdoorLiving's SkyView 2-Person Tent. It's not just a tent; it's your home away from home."</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skyview-2-person-tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SkyView 2-Person Tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/products/skyview-2-person-tent"</span>
-<span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unveiling the TrailMaster X4 Tent from OutdoorLiving, your home away from home for your next camping adventure. Crafted from durable polyester, this tent boasts a spacious interior perfect for four occupants. It ensures your dryness under drizzly skies thanks to its water-resistant construction, and the accompanying rainfly adds an extra layer of weather protection. It offers refreshing airflow and bug defence, courtesy of its mesh panels. Accessibility is not an issue with its multiple doors and interior pockets that keep small items tidy. Reflective guy lines grant better visibility at night, and the freestanding design simplifies setup and relocation. With the included carry bag, transporting this convenient abode becomes a breeze. Be it an overnight getaway or a week-long nature escapade, the TrailMaster X4 Tent provides comfort, convenience, and concord with the great outdoors. Comes with a two-year limited warranty to ensure customer satisfaction."</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trailmaster-x4-tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TrailMaster X4 Tent"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/products/trailmaster-x4-tent"</span>
-<span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meet the MountainDream Sleeping Bag: your new must-have companion for every outdoor adventure. Designed to handle 3-season camping with ease, it comes equipped with a premium synthetic insulation that will keep you cozy even when temperatures fall down to 15\u00b0F! Sporting a durable water-resistant nylon shell and soft breathable polyester lining, this bag doesn't sacrifice comfort for toughness. The star of the show is the contoured mummy shape that not only provides optimal heat retention but also cuts down on the weight. A smooth, snag-free YKK zipper with a unique anti-snag design allows for hassle-free operation, while the adjustable hood and full-length zipper baffle work together to ensure you stay warm all night long. Need to bring along some essentials? Not to worry! There's an interior pocket just for that. And when it's time to pack up? Just slip it into the included compression sack for easy storage and transport. Whether you're a backpacking pro or a camping novice, the MountainDream Sleeping Bag is the perfect blend of durability, warmth, and comfort that you've been looking for."</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mountaindream-sleeping-bag"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MountainDream Sleeping Bag"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/products/mountaindream-sleeping-bag"</span>
-<span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adventure waits for no one! Introducing the HikeMate SummitClimber Backpack, your reliable partner for every exhilarating journey. With a generous 60-liter capacity and multiple compartments and pockets, packing is a breeze. Every feature points to comfort and convenience; the ergonomic design and adjustable hip belt ensure a pleasantly personalized fit, while padded shoulder straps protect you from the burden of carrying. Venturing into wet weather? Fear not! The integrated rain cover has your back, literally. Stay hydrated thanks to the backpack's hydration system compatibility. Travelling during twilight? Reflective accents keep you visible in low-light conditions. The SummitClimber Backpack isn't merely a carrier; it's a wearable base camp constructed from ruggedly durable nylon and thoughtfully designed for the great outdoors adventurer, promising to withstand tough conditions and provide years of service. So, set off on that quest - the wild beckons! The SummitClimber Backpack - your hearty companion on every expedition!"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"summitclimber-backpack"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SummitClimber Backpack"</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/products/summitclimber-backpack"</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">]</span>
-<span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">"inputs.query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which tent is the most waterproof?"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"inputs.truth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Alpine Explorer Tent has the highest rainfly waterproof rating at 3000m"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"outputs.groundedness.groundedness"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"outputs.groundedness.gpt_groundedness"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"outputs.groundedness.groundedness_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The RESPONSE does not reference any of the tents or their features from the CONTEXT, making it completely ungrounded. It fails to provide any relevant information or insights based on the provided material."</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"line_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">},</span>
-</code></pre></div></td></tr></table></div>
-</div>
 
 
 
