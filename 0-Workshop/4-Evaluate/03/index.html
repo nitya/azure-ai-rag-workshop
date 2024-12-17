@@ -1095,6 +1095,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4.3 Configure Evaluation Model
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1104,6 +1115,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-specifying-evaluator-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Specifying Evaluator Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuring-evaluator-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuring Evaluator Model
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1348,6 +1396,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-specifying-evaluator-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Specifying Evaluator Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuring-evaluator-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuring Evaluator Model
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1365,6 +1439,58 @@
 
 
 <h1 id="43-configure-evaluation-model">4.3 Configure Evaluation Model<a class="headerlink" href="#43-configure-evaluation-model" title="Permanent link">¶</a></h1>
+<p>Recall that in the last section, the evaluation script identified an <em>evaluator_model</em> that will serve as the judge AI for this assessment. </p>
+<hr/>
+<h2 id="1-specifying-evaluator-model">1. Specifying Evaluator Model<a class="headerlink" href="#1-specifying-evaluator-model" title="Permanent link">¶</a></h2>
+<p>In this workshop, we are reusing the same model for both <em>chat_completion</em> and <em>evaluation</em> roles, but you can choose to separate the two by:</p>
+<ul>
+<li>Deploying a new model to the same Azure AI Project</li>
+<li>Updating the <code>EVALUATION_MODEL</code> environment variable to this one</li>
+<li>Restarting the evaluation script</li>
+</ul>
+<div class="admonition task">
+<p class="admonition-title">HOMEWORK: Try deploying a <code>gpt-4</code> model for evaluations. How do results differ?</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">src/api/evaluation.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="c1"># ----------------------------------------------</span>
+    <span class="c1"># 2. Define Evaluator Model to use</span>
+    <span class="c1"># ----------------------------------------------</span>
+    <span class="n">evaluator_model</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"azure_endpoint"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">endpoint_url</span><span class="p">,</span>
+        <span class="s2">"azure_deployment"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"EVALUATION_MODEL"</span><span class="p">],</span>
+        <span class="s2">"api_version"</span><span class="p">:</span> <span class="s2">"2024-06-01"</span><span class="p">,</span>
+        <span class="s2">"api_key"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">groundedness</span> <span class="o">=</span> <span class="n">GroundednessEvaluator</span><span class="p">(</span><span class="n">evaluator_model</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h2 id="2-configuring-evaluator-model">2. Configuring Evaluator Model<a class="headerlink" href="#2-configuring-evaluator-model" title="Permanent link">¶</a></h2>
+<p>Let's take a look at the core <code>evaluate</code> function that executes the workflow. This function will run an assessment once for each record (in <code>data</code>), for each evaluator (in <code>evaluators</code>). This requires a lot of calls to the identified evaluation model - <strong>which will require a higher token capacity for efficient completion</strong>.</p>
+<p>Note: The current script uses a single evaluator (for Groundedness). Adding additional evaluators will increase the number of calls made to the default model, so make sure you configure quota to adjust for that accordingly.=</p>
+<div class="admonition tip">
+<p class="admonition-title">Update the model quota in Azure AI Foundry if execution has rate limit issues</p>
+<p>Take these steps to view and update your model quota.</p>
+<ul>
+<li>Visit your Azure AI project page in Azure AI Foundry</li>
+<li>Click "Models + Endpoints" and select the evaluation model</li>
+<li>Click <code>Edit</code> and increase the <em>Tokens per minute rate limit</em>* (e.g., to 30)</li>
+<li>Click <code>Save and close</code> </li>
+</ul>
+</div>
+<details class="info">
+<summary>Click to expand and see a screenshot of the update dialog</summary>
+<p><img alt="Evaluation" src="../../img/evaluation-model-update.png"/></p>
+</details>
 
 
 
