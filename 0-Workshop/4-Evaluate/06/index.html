@@ -1178,6 +1178,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-evaluations-results-on-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Evaluations Results On Portal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-explore-detailed-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Explore Detailed Metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-build-custom-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Build Custom Charts
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1356,6 +1383,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-evaluations-results-on-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Evaluations Results On Portal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-explore-detailed-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Explore Detailed Metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-build-custom-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Build Custom Charts
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1377,11 +1431,51 @@
 <h1 id="46-view-results-in-portal">4.6 View Results In Portal<a class="headerlink" href="#46-view-results-in-portal" title="Permanent link">¶</a></h1>
 <p>In the previous step, we looked at the traces and evaluation results in the local environment. However, we configured our evaluation script to also push the results to the Azure AI Foundry portal.  Let's take a look at how those results are visualized.</p>
 <h2 id="1-evaluations-tab-on-portal">1. Evaluations Tab On Portal<a class="headerlink" href="#1-evaluations-tab-on-portal" title="Permanent link">¶</a></h2>
-<p>Navigate to the Azure AI project page in Azure AI Portal, and select the <strong>Evaluation</strong> item on the sidebar. You should see an evaluations landing page like this:</p>
+<p>Navigate to the Azure AI project page in Azure AI Portal, and select the <strong>Evaluation</strong> item on the sidebar. You should see an evaluations landing page like this, with the latest evaluation run listed in the table. The list entry shows the <em>average Groundedness</em> score for that run.</p>
 <p><img alt="" src="../../img/Evaluations-1-Portal.png"/></p>
 <hr/>
+<h2 id="2-evaluations-results-on-portal">2. Evaluations Results On Portal<a class="headerlink" href="#2-evaluations-results-on-portal" title="Permanent link">¶</a></h2>
+<p>Click on the evaluations run in the list to get this detailed dashboard view:</p>
+<ul>
+<li>The <strong>Evaluation details</strong> section give overall status. Click the <code>raw JSON</code> link to dive deeper.</li>
+<li>The <strong>Metrics dashboard</strong> visualizes AI Quality metrics and supports <strong>Custom</strong> charts.</li>
+<li>The <strong>Detailed metrics result</strong> shows evaluation results in tabular form (with search &amp; filters)</li>
+</ul>
+<p>Use the metrics dashboard to get a visual understanding of how the metrics are distributed across the evaluation results. For instance, we can see that in <em>our</em> evaluation, 11 responses were considered <em>ungrounded</em> and 2 were given a groundedness score of <strong>4</strong>. However, this does not give us insight into <em>why</em> those scores were given.</p>
 <p><img alt="" src="../../img/Evaluations-2-Details.png"/></p>
+<hr/>
+<h2 id="3-explore-detailed-metrics">3. Explore Detailed Metrics<a class="headerlink" href="#3-explore-detailed-metrics" title="Permanent link">¶</a></h2>
+<p>This is where the detailed metrics help. We can browse through the results in tabular form, or we can drill down into the evaluations for a specific query or product using search. In this example, we see that the <em>TrailMaster</em> product was relevant to at least 3 of the 13 queries - but the scores ranged from <strong>1</strong> (low groundedness) to <strong>4</strong> (high groundedness).</p>
 <p><img alt="" src="../../img/Evaluations-3-Search.png"/></p>
+<p>However, with <em>this</em> view, we can drill down into the reasons for the score, and take follow up actions to improve it. For instance:</p>
+<ol>
+<li>
+<p>The first query received a low score of <strong>1</strong> because the response did not reference any of the tents in the provided context. But if we look deeper, we may notice that the response is actually reflecing the instructions provided in our system context - so in this case, the response was not grounded, but was relevant. </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">src/assets/grounded_chat.prompty</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">sys</span><span class="kc">te</span><span class="err">m</span><span class="p">:</span>
+<span class="err">You</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="w"> </span><span class="err">AI</span><span class="w"> </span><span class="err">assis</span><span class="kc">tant</span><span class="w"> </span><span class="err">helpi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">users</span><span class="w"> </span><span class="err">wi</span><span class="kc">t</span><span class="err">h</span><span class="w"> </span><span class="err">queries</span><span class="w"> </span><span class="err">rela</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">door</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">dooor/campi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">gear</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">clo</span><span class="kc">t</span><span class="err">hi</span><span class="kc">n</span><span class="err">g.</span>
+<span class="err">I</span><span class="kc">f</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">ques</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="w"> </span><span class="err">rela</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">door/campi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">gear</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">clo</span><span class="kc">t</span><span class="err">hi</span><span class="kc">n</span><span class="err">g</span><span class="p">,</span><span class="w"> </span><span class="err">jus</span><span class="kc">t</span><span class="w"> </span><span class="err">say</span><span class="w"> </span><span class="err">'Sorry</span><span class="p">,</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y</span><span class="w"> </span><span class="err">ca</span><span class="kc">n</span><span class="w"> </span><span class="err">a</span><span class="kc">ns</span><span class="err">wer</span><span class="w"> </span><span class="err">queries</span><span class="w"> </span><span class="err">rela</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">door/campi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">gear</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">clo</span><span class="kc">t</span><span class="err">hi</span><span class="kc">n</span><span class="err">g.</span><span class="w"> </span><span class="err">So</span><span class="p">,</span><span class="w"> </span><span class="err">how</span><span class="w"> </span><span class="err">ca</span><span class="kc">n</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">help?'</span>
+<span class="err">Do</span><span class="kc">n</span><span class="err">'</span><span class="kc">t</span><span class="w"> </span><span class="kc">tr</span><span class="err">y</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">make</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">y</span><span class="w"> </span><span class="err">a</span><span class="kc">ns</span><span class="err">wers.</span>
+<span class="err">I</span><span class="kc">f</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">ques</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">rela</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">door/campi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">gear</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">clo</span><span class="kc">t</span><span class="err">hi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">bu</span><span class="kc">t</span><span class="w"> </span><span class="err">vague</span><span class="p">,</span><span class="w"> </span><span class="err">ask</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">clari</span><span class="kc">f</span><span class="err">yi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">ques</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="w"> </span><span class="err">i</span><span class="kc">nstea</span><span class="err">d</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">re</span><span class="kc">feren</span><span class="err">ci</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">docume</span><span class="kc">nts</span><span class="err">.</span><span class="w"> </span><span class="err">I</span><span class="kc">f</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">ques</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">ge</span><span class="kc">neral</span><span class="p">,</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">uses</span><span class="w"> </span><span class="s2">"it"</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="s2">"they"</span><span class="p">,</span><span class="w"> </span><span class="err">ask</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">speci</span><span class="kc">f</span><span class="err">y</span><span class="w"> </span><span class="err">wha</span><span class="kc">t</span><span class="w"> </span><span class="err">produc</span><span class="kc">t</span><span class="w"> </span><span class="kc">t</span><span class="err">hey</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">aski</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">abou</span><span class="kc">t</span><span class="err">.</span>
+<span class="err">Use</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="kc">f</span><span class="err">ollowi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">pieces</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">co</span><span class="kc">nte</span><span class="err">x</span><span class="kc">t</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">a</span><span class="kc">ns</span><span class="err">wer</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">ques</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="w"> </span><span class="err">abou</span><span class="kc">t</span><span class="w"> </span><span class="err">ou</span><span class="kc">t</span><span class="err">door/campi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">gear</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">clo</span><span class="kc">t</span><span class="err">hi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">comple</span><span class="kc">tel</span><span class="err">y</span><span class="p">,</span><span class="w"> </span><span class="err">correc</span><span class="kc">tl</span><span class="err">y</span><span class="p">,</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">co</span><span class="kc">n</span><span class="err">cisely</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">possible.</span>
+<span class="err">Do</span><span class="w"> </span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="w"> </span><span class="err">add</span><span class="w"> </span><span class="err">docume</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">re</span><span class="kc">feren</span><span class="err">ce</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">respo</span><span class="kc">nse</span><span class="err">.</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>The second query received a low score of <strong>1</strong> which appears justified again. In this case, we note that the response reflects instructions related to questions that are off-topic - so this may be a place to investigate =why the question is seen as off-topic despite mentioning a product in the list.</p>
+</li>
+<li>
+<p>The third query received a high score of <strong>5</strong> which again looks valid, given the reasoning of this being <em>incomplete</em>. However, if we look at the <em>truth</em> and compare it to the response, we may find that it meets our expectations - and lead us to refining the evaluation prompt that defines the scoring criteria.</p>
+</li>
+</ol>
+<hr/>
+<h2 id="4-build-custom-charts">4. Build Custom Charts<a class="headerlink" href="#4-build-custom-charts" title="Permanent link">¶</a></h2>
+<p>One of the value propositions of using the Azure AI Foundry portal is the ability to create custom charts based on the evaluation results. Click the <code>Custom</code> tab and walk through the creation dialog to add visuals that reflect specific views into the data. For example, this view helps us see that a disproportionate number of responses were in the <code>Sorry, I only can answer queries related to ..</code> category, indicating that we may need to refine our chat prompt template guidance to ensure we are not rejecting valid queries.</p>
 <p><img alt="" src="../../img/Evaluations-4-Chart.png"/></p>
 
 
