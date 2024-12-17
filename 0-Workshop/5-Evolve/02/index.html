@@ -411,8 +411,6 @@
       
         
       
-        
-      
     
     
       
@@ -521,27 +519,6 @@
   
   <span class="md-ellipsis">
     1.4 RAG Chat Tutorial
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../1-Overview/04/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    1.5 Contoso Chat Sample
   </span>
   
 
@@ -1002,8 +979,6 @@
       
         
       
-        
-      
     
     
       
@@ -1163,27 +1138,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4-Evaluate/07/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    4.7 Validate The Evaluation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1277,6 +1231,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    5.2 Refactor: Make it Better
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1286,6 +1251,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contoso-chat-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Contoso Chat Sample
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rag-chat-sample-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. RAG Chat Sample (v2)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1348,6 +1350,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-contoso-chat-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Contoso Chat Sample
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rag-chat-sample-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. RAG Chat Sample (v2)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1365,10 +1393,32 @@
 
 
 <h1 id="52-refactor-make-it-better">5.2 Refactor: Make it Better<a class="headerlink" href="#52-refactor-make-it-better" title="Permanent link">¶</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">PLACEHOLDER 👉🏽 EXPLAIN HOW CONTOSO CHAT STREAMLINES E2E</p>
+<h2 id="1-contoso-chat-sample">1. Contoso Chat Sample<a class="headerlink" href="#1-contoso-chat-sample" title="Permanent link">¶</a></h2>
+<p>Once you've familiarized yourself with the basic setup, ideation and evaluation capabilities, you can explore the <a href="https://aka.ms/aitour/contoso-chat">Contoso Chat</a> sample for more advanced insights, on your own. </p>
+<p>This sample uses the same retail dataset used in this RAG Chat workshop, but streamlines the end-to-end development workflow with core developer tools like Azure Developer CLI, to automate provisioning and deployment. The sample also teaches you how to package up your application prototype and deploy it into production using Azure Container Apps.</p>
+<p><img alt="Workshop v3" src="https://nitya.github.io/contoso-chat/img/workshop-developer-flow.png"/></p>
+<div class="admonition warning">
+<p class="admonition-title">Contoso Chat is currently in v3. An updated v4 (Jan 2025) will reflect recent Azure AI SDK updates</p>
 </div>
-<hr/>
+<h2 id="2-rag-chat-sample-v2">2. RAG Chat Sample (v2)<a class="headerlink" href="#2-rag-chat-sample-v2" title="Permanent link">¶</a></h2>
+<p>Another option is to use this existing repository and workshop <em>as a sandbox sample</em> that you can customize to your own requirements. Here are some suggestions for ways to experiment further:</p>
+<ol>
+<li>
+<p><strong>Bring Your Own Data</strong> - Walk through the steps but replace the <code>product.csv</code> with your data, and understand the implications for all the other steps in the workflow. For example - you will need to create a new set of evaluation test inputs (for your use case) and refactor the prompt templates (for intent mapping and chat-with-products) to reflect new instructions or context.</p>
+</li>
+<li>
+<p><strong>Integrate More Sources</strong> - The basic sample has a single data source (product catalog index). However, the <code>data/</code> folder provides additional data sources (customer data, product manual data) that can be used for even richer experiences. Think of how you can refactor the existing code to support <em>data retrieval</em> from multiple sources that store this data (e.g., Customer data in Azure Cosmos DB).</p>
+</li>
+<li>
+<p><strong>Write Custom Evaluators</strong> - The default evaluators for quality reflect common best practices. However, you may want to assess responses for a <em>custom criteria</em>. Think of how you can write a custom evaluator, and add it into the evalution script. For example: evaluate responses for <em>politeness</em> or for being <em>kid-friendly</em>.</p>
+</li>
+<li>
+<p><strong>Explore Richer RAG Patterns</strong> - The core of RAG patterns is the <em>retrieval</em> of relevant knowledge from various sources including Azure AI Search. Explore new algorithms or ways of combining context to make the retrieved documents more relevant to application needs.</p>
+</li>
+<li>
+<p><strong>Make it Agentic</strong> - Agentic workflows are dominating the AI ecosystem today. Agentic RAG refers to the use of AI agents for information retrieval where the agent mediates between multiple data sources to drive enhanced RAG pipelines for delivery. <a href="https://weaviate.io/blog/what-is-agentic-rag">Read more here</a>.</p>
+</li>
+</ol>
 
 
 
