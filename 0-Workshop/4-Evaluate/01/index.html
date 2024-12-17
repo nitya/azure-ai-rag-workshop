@@ -1053,6 +1053,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4.1 Create Evaluation Dataset
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1062,6 +1073,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-evaluating-generative-ai-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evaluating Generative AI Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ai-assisted-evaluation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. AI-Assisted Evaluation Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-evaluation-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create Evaluation Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-review-evaluation-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Review Evaluation Dataset
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1348,6 +1414,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-evaluating-generative-ai-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evaluating Generative AI Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ai-assisted-evaluation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. AI-Assisted Evaluation Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-evaluation-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create Evaluation Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-review-evaluation-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Review Evaluation Dataset
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1365,6 +1475,84 @@
 
 
 <h1 id="41-create-evaluation-dataset">4.1 Create Evaluation Dataset<a class="headerlink" href="#41-create-evaluation-dataset" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">This begins <a href="https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-evaluate">Part 3</a> of the tutorial. <strong>This stage is completed USING THE AZURE AI FOUNDRY SDK.</strong></p>
+</div>
+<hr/>
+<h2 id="1-evaluating-generative-ai-apps">1. Evaluating Generative AI Apps<a class="headerlink" href="#1-evaluating-generative-ai-apps" title="Permanent link">¶</a></h2>
+<p>The evaluation phase is critical to assessing the <em>quality and safety</em> of your generative AI application. The Azure AI Foundry provides a comprehensive set of tools and guidance to support evaluation in three dimensions. <a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning">Learn More Here.</a></p>
+<p><img alt="" src="https://learn.microsoft.com/en-us/azure/ai-studio/media/evaluations/automated-evaluation-azure-ai-foundry.png"/></p>
+<ol>
+<li><strong><a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning#risk-and-safety-evaluators">Risk and safety evaluators</a></strong>: Evaluating potential risks associated with AI-generated content. Ex: evaluating AI predisposition towards generating harmful or inappropriate content.</li>
+<li><strong><a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning#generation-quality-metrics">Performance and quality evaluators</a></strong>: Assessing accuracy, groundedness, and relevance of generated content using robust AI-assisted and Natural Language Processing (NLP) metrics.</li>
+<li><strong>Custom evaluators</strong>: Tailored evaluation metrics that allow for more detailed and specific analyses. Ex: addressing app-specific requirements not covered by standard metrics.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">AI-Assisted Evaluators are available only in <a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning#region-support">select regions</a> (Recommended: East US 2)</p>
+</div>
+<hr/>
+<h2 id="2-ai-assisted-evaluation-flow">2. AI-Assisted Evaluation Flow<a class="headerlink" href="#2-ai-assisted-evaluation-flow" title="Permanent link">¶</a></h2>
+<p>So far, we've tested the chat application interactively (command-line) using a <em>single test prompt</em>. Now, we want to evaluate the responses on a <em>larger and more diverse set of test prompts</em> including edge cases. We can then use those results to iterate on our application (e.g., prompt template, data sources) till evaluations pass our acceptance criteria.</p>
+<p>To do this we use AI-Assisted Evaluation - also referred to as <a href="https://huggingface.co/papers/2306.05685">LLM-as-a-judge</a> - where we ask a second AI model ("judge") to grade the responses of the first AI model ("target"). The workflow is as shown below:</p>
+<ol>
+<li>First, create an <em>evaluation dataset</em> that consists of diverse queries for testing.</li>
+<li>Next, have the <em>target AI</em> (app) generate responses for each query</li>
+<li>Next, have the <em>judge AI</em> (assessor) grade tge {query, response} pairs </li>
+<li>Finally, visualize results (individual vs. aggregate metrics) for review.</li>
+</ol>
+<p><img alt="Generational Quality Metrics" src="https://learn.microsoft.com/en-us/azure/ai-studio/media/evaluations/quality-evaluation-diagram.png"/></p>
+<hr/>
+<h2 id="3-create-evaluation-dataset">3. Create Evaluation Dataset<a class="headerlink" href="#3-create-evaluation-dataset" title="Permanent link">¶</a></h2>
+<p>Let's copy over the <code>chat_eval_data.jsonl</code> dataset into our assets folder.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>src.sample/api/assets/chat_eval_data.jsonl<span class="w"> </span>src/api/assets/.
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h2 id="4-review-evaluation-dataset">4. Review Evaluation Dataset<a class="headerlink" href="#4-review-evaluation-dataset" title="Permanent link">¶</a></h2>
+<p>The Azure AI Foundry <a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning#supported-data-format">supports different data formats</a> for evaluation including:</p>
+<ol>
+<li><strong>Query/Response</strong> - each result has the query, response, and <em>ground truth</em>.</li>
+<li><strong>Conversation (single/multi-turn)</strong> - messages (with content, role, optional context)</li>
+</ol>
+<p>Our dataset reflects the first format, where the <em>test prompts</em> contain a query with the ground truth for evaluating responses. The chat AI will then generate a response (based on query) that gets added to this record, to create the <em>evaluation dataset</em> that is sent to the "judge" AI.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which tent is the most waterproof?"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"truth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Alpine Explorer Tent has the highest rainfly waterproof rating at 3000m"</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<strong>Let's look at the evaluation script that orchestrates this workflow, next</strong></p>
+<details class="info">
+<summary>Click to expand and view the evalation dataset</summary>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">src/api/assets/chat_eval_data.jsonl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>{"query": "Which tent is the most waterproof?", "truth": "The Alpine Explorer Tent has the highest rainfly waterproof rating at 3000m"}
+{"query": "Which camping table holds the most weight?", "truth": "The Adventure Dining Table has a higher weight capacity than all of the other camping tables mentioned"}
+{"query": "How much do the TrailWalker Hiking Shoes cost? ", "truth": "The Trailewalker Hiking Shoes are priced at $110"}
+{"query": "What is the proper care for trailwalker hiking shoes? ", "truth": "After each use, remove any dirt or debris by brushing or wiping the shoes with a damp cloth."}
+{"query": "What brand is TrailMaster tent? ", "truth": "OutdoorLiving"}
+{"query": "How do I carry the TrailMaster tent around? ", "truth": " Carry bag included for convenient storage and transportation"}
+{"query": "What is the floor area for Floor Area? ", "truth": "80 square feet"}
+{"query": "What is the material for TrailBlaze Hiking Pants?", "truth": "Made of high-quality nylon fabric"}
+{"query": "What color does TrailBlaze Hiking Pants come in?", "truth": "Khaki"}
+{"query": "Can the warrenty for TrailBlaze pants be transfered? ", "truth": "The warranty is non-transferable and applies only to the original purchaser of the TrailBlaze Hiking Pants. It is valid only when the product is purchased from an authorized retailer."}
+{"query": "How long are the TrailBlaze pants under warranty for? ", "truth": " The TrailBlaze Hiking Pants are backed by a 1-year limited warranty from the date of purchase."}
+{"query": "What is the material for PowerBurner Camping Stove? ", "truth": "Stainless Steel"}
+{"query": "Is France in Europe?", "truth": "Sorry, I can only queries related to outdoor/camping gear and equipment"}
+</code></pre></div></td></tr></table></div>
+<hr/>
+</details>
 
 
 

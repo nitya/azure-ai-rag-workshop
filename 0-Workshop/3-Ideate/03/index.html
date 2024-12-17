@@ -921,9 +921,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-add-docs-retreval-script" class="md-nav__link">
+  <a href="#1-add-docs-retrieval-script" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Add Docs Retreval Script
+      1. Add Docs Retrieval Script
     </span>
   </a>
   
@@ -1430,9 +1430,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-add-docs-retreval-script" class="md-nav__link">
+  <a href="#1-add-docs-retrieval-script" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Add Docs Retreval Script
+      1. Add Docs Retrieval Script
     </span>
   </a>
   
@@ -1493,7 +1493,7 @@
 
 
 <h1 id="33-retrieve-related-products">3.3 Retrieve Related Products<a class="headerlink" href="#33-retrieve-related-products" title="Permanent link">¶</a></h1>
-<h2 id="1-add-docs-retreval-script">1. Add Docs Retreval Script<a class="headerlink" href="#1-add-docs-retreval-script" title="Permanent link">¶</a></h2>
+<h2 id="1-add-docs-retrieval-script">1. Add Docs Retrieval Script<a class="headerlink" href="#1-add-docs-retrieval-script" title="Permanent link">¶</a></h2>
 <p>Let's copy over the <code>get_product_documents.py</code> script into our application source folder.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>src.sample/api/get_product_documents.py<span class="w">  </span>src/api/.
 </code></pre></div></td></tr></table></div>
@@ -1509,6 +1509,7 @@
 <li>We use the search index to retrieve product documents matching query.</li>
 </ol>
 <p>Let's see how we do this.</p>
+<hr/>
 <h2 id="3-create-ai-project-client">3. Create AI Project Client<a class="headerlink" href="#3-create-ai-project-client" title="Permanent link">¶</a></h2>
 <ol>
 <li>Create an Azure AI Project client using the connection string</li>
@@ -1728,6 +1729,7 @@
         <span class="k">return</span> <span class="n">documents</span>
 </code></pre></div></td></tr></table></div>
 </details>
+<hr/>
 <h2 id="5-run-docs-retrieval-script">5. Run Docs Retrieval Script<a class="headerlink" href="#5-run-docs-retrieval-script" title="Permanent link">¶</a></h2>
 <p>Before we can run this script, we need to create the Intent Mapper template for step 2. Let's do that next.</p>
 

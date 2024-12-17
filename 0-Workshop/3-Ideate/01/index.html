@@ -1439,12 +1439,15 @@
 
 
 <h1 id="31-add-application-data">3.1 Add Application Data<a class="headerlink" href="#31-add-application-data" title="Permanent link">¶</a></h1>
-<p>We want to ground chat AI responses in our application data. In this case, we want to respond to customer queries about our products by grounding the responses in items found in our catalog.</p>
-<div class="admonition task">
-<p class="admonition-title">HOMEWORK: Think of other data sources that might be useful, and  how to add them.</p>
+<div class="admonition info">
+<p class="admonition-title">This begins <a href="https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-build-rag">Part 2</a> of the tutorial. <strong>This stage is completed USING THE AZURE AI FOUNDRY SDK.</strong></p>
 </div>
 <hr/>
 <h2 id="1-add-productscsv-to-assets">1. Add <code>products.csv</code> to <code>assets/</code><a class="headerlink" href="#1-add-productscsv-to-assets" title="Permanent link">¶</a></h2>
+<p>We want to ground chat AI responses in our application data. In this case, we want to respond to customer queries about our products by grounding the responses in items found in our catalog.</p>
+<div class="admonition task">
+<p class="admonition-title">HOMEWORK: Think of other retail data sources that might be useful (and how to add them)</p>
+</div>
 <p>Recall that the <code>src/config.py</code> script identifies the <code>assets/</code> folder as the source for all static assets. We already created the <code>src/api/assets</code> earlier.  Let's copy in the product catalog data into this folder now.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>src.sample/api/assets/products.csv<span class="w">  </span>src/api/assets/
 </code></pre></div></td></tr></table></div>
@@ -1501,8 +1504,8 @@
 19,Adventure Dining Table,90.0,Camping Tables,CampBuddy,"Discover the joy of outdoor adventures with the CampBuddy Adventure Dining Table. This feature-packed camping essential brings both comfort and convenience to your memorable trips. Made from high-quality aluminum, it promises long-lasting performance, weather resistance, and easy maintenance - all key for the great outdoors! It's light, portable, and comes with adjustable height settings to suit various seating arrangements and the spacious surface comfortably accommodates meals, drinks, and other essentials. The sturdy yet lightweight frame holds food, dishes, and utensils with ease. When it's time to pack up, it fold and stows away with no fuss, ready for the next adventure!  Perfect for camping, picnics, barbecues, and beach outings - its versatility shines as brightly as the summer sun! Durable, sturdy and a breeze to set up, the Adventure Dining Table will be a loyal companion on every trip. Embark on your next adventure and make lifetime memories with CampBuddy. As with all good experiences, it'll leave you wanting more! "
 20,CompactCook Camping Stove,60.0,Camping Stoves,CompactCook,"Step into the great outdoors with the CompactCook Camping Stove, a convenient, lightweight companion perfect for all your culinary camping needs. Boasting a robust design built for harsh environments, you can whip up meals anytime, anywhere. Its wind-resistant and fuel-versatile features coupled with an efficient cooking performance, ensures you won't have to worry about the elements or helpless taste buds while on adventures. The easy ignition technology and adjustable flame control make cooking as easy as a walk in the park, while its compact, foldable design makes packing a breeze. Whether you're camping with family or hiking solo, this reliable, portable stove is an essential addition to your gear. With its sturdy construction and safety-focused design, the CompactCook Camping Stove is a step above the rest, providing durability, quality, and peace of mind. Be wild, be free, be cooked for with the CompactCook Camping Stove!"
 </code></pre></div></td></tr></table></div>
-<hr/>
 </details>
+<hr/>
 
 
 
