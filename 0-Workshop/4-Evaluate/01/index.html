@@ -1514,18 +1514,8 @@
 <li><strong>Query/Response</strong> - each result has the query, response, and <em>ground truth</em>.</li>
 <li><strong>Conversation (single/multi-turn)</strong> - messages (with content, role, optional context)</li>
 </ol>
-<p>Our dataset reflects the first format, where the <em>test prompts</em> contain a query with the ground truth for evaluating responses. The chat AI will then generate a response (based on query) that gets added to this record, to create the <em>evaluation dataset</em> that is sent to the "judge" AI.</p>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which tent is the most waterproof?"</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">"truth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Alpine Explorer Tent has the highest rainfly waterproof rating at 3000m"</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<strong>Let's look at the evaluation script that orchestrates this workflow, next</strong></p>
 <details class="info">
-<summary>Click to expand and view the evalation dataset</summary>
+<summary>Click to expand and view the evaluation dataset</summary>
 <div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">src/api/assets/chat_eval_data.jsonl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1554,6 +1544,16 @@
 </code></pre></div></td></tr></table></div>
 <hr/>
 </details>
+<p>Our dataset reflects the first format, where the <em>test prompts</em> contain a query with the ground truth for evaluating responses. The chat AI will then generate a response (based on query) that gets added to this record, to create the <em>evaluation dataset</em> that is sent to the "judge" AI.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which tent is the most waterproof?"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">"truth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Alpine Explorer Tent has the highest rainfly waterproof rating at 3000m"</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<strong>Let's look at the evaluation script that orchestrates this workflow, next</strong></p>
 
 
 
