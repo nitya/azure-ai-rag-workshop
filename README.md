@@ -1,34 +1,44 @@
 # Build a RAG-based Chat App on Azure AI Foundry
 
-## Objectives
+This repository contains the source and instructions guide for a workshop on building a RAG-based chat app using Azure AI Foundry. The workshop is derived from [the official 3-part tutorial](https://learn.microsoft.com/azure/ai-studio/tutorials/copilot-sdk-create-resources) and adapted to provide additional resources and suggestions for self-guided learners.
 
-1. Complete the 3-part tutorial from the Azure AI Foundry Documentation
-2. Compare it to existing Contoso Chat (v3) and document differences
-3. Compare it to proposed Contoso Chat (v4) and reconcile approaches
-4. Document this as a workshop for self-guided learners, using mkdocs.
-
----
 
 ## Pre-Requisites
 
----
+To get the most from this lab, you will need the following:
 
-## Data Sources Used
+1. An Azure subscription - [Get one for free](https://aka.ms/azure/free)
+1. A GitHub account - [Get one for free](https://github.com/signup)
+1. Familiarity with VS Code, Github & Azure.
+1. Familiarity with Python and Jupyter Notebooks.
 
 
+Check that your Azure subscription has sufficient quota to deploy the following Azure OpenAI Models: 
+1. Chat: `gpt-4o-mini` 
+1. Embeddings: `text-embedding-ada-002`
 
----
+Check that your Azure account has the necessary permissions to make role assignments for relevant Azure AI resources. (e.g., may require a [Privileged role](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator) like Owner, User Access Admin or RBAC Admin)
 
 
-## Resources Used
+## Getting Started
 
-1. [Tutorial Part 1](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-create-resources?tabs=macos) - Setup Project
-1. [Tutorial Part 2](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-build-rag) - Build with Data Retrieval
-1. [Tutorial Part 3](https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-evaluate) - Evaluate the chat app
-1. [Concept: ]()
-1. [Concept: ]()
-1. [Concept: ]()
-1. [Concept: ]()
-1. [Concept: ]()
+This repository is instrumented with a `devcontainer.json` to give you a development environment with all required dependencies pre-installed. To get started:
 
----
+1. [Fork the repository](https://github.com/nitya/azure-ai-rag-workshop) to your personal profile.
+
+1. Launch Codespaces on that fork.
+    Setup may take a few minutes. Once ready, you will see a Visual Studio Code editor. 
+
+1. Wait for the terminal prompt then launch the workshop guide with this command:
+
+    ```bash
+    mkdocs serve
+    ```
+    You will be prompted to view this in a browser or within VS Code. _Select the browser option to get the workshop guide in its own tab_.
+
+1. Open a _new_ terminal window in Visual Studio Code, and use this window for executing further commands from the guide.
+
+
+## Troubleshooting
+
+This section will capture any known issues in using this repo or workshop guide.
