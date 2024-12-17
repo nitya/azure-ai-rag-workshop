@@ -32,7 +32,7 @@ This repository is instrumented with a `devcontainer.json` to give you a develop
 1. Launch Codespaces on that fork. _Setup will take a few minutes_.
 1. Type this command into the VS Code terminal when ready. _A dialog will pop up_.
 
-    ```bash
+    ```bash title=""
     mkdocs serve
     ```
 
