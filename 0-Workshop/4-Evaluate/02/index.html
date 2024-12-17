@@ -520,7 +520,7 @@
         
   
   <span class="md-ellipsis">
-    1.4 RAG Chat Roadmap
+    1.4 RAG Chat Tutorial
   </span>
   
 
@@ -541,7 +541,7 @@
         
   
   <span class="md-ellipsis">
-    1.2 Contoso Chat Roadmap
+    1.5 Contoso Chat Sample
   </span>
   
 
@@ -752,7 +752,7 @@
         
   
   <span class="md-ellipsis">
-    2.6 Configure Env Variables
+    2.7 Configure Env Variables
   </span>
   
 
@@ -1074,6 +1074,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4.2 Create Evaluation Script
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1083,6 +1094,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-evaluation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create Evaluation Script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-understand-evalution-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Understand Evalution Workflow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1348,6 +1396,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-evaluation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create Evaluation Script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-understand-evalution-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Understand Evalution Workflow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1365,6 +1439,384 @@
 
 
 <h1 id="42-create-evaluation-script">4.2 Create Evaluation Script<a class="headerlink" href="#42-create-evaluation-script" title="Permanent link">¶</a></h1>
+<p>Let's review the workflow required for AI-Assisted evaluation.</p>
+<p><img alt="Generational Quality Metrics" src="https://learn.microsoft.com/en-us/azure/ai-studio/media/evaluations/quality-evaluation-diagram.png"/></p>
+<h2 id="1-create-evaluation-script">1. Create Evaluation Script<a class="headerlink" href="#1-create-evaluation-script" title="Permanent link">¶</a></h2>
+<p>Let's copy over the <code>evaluate.py</code> script into our application source folder.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>src.sample/api/evaluate.py<span class="w">  </span>src/api/.
+</code></pre></div></td></tr></table></div>
+<h2 id="2-understand-evalution-workflow">2. Understand Evalution Workflow<a class="headerlink" href="#2-understand-evalution-workflow" title="Permanent link">¶</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Click to expand and view the Python script to run evaluation</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># ----------------------------------------------</span>
+<span class="c1"># 1. Create AI Project Client </span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">azure.ai.projects</span> <span class="kn">import</span> <span class="n">AIProjectClient</span>
+<span class="kn">from</span> <span class="nn">azure.ai.projects.models</span> <span class="kn">import</span> <span class="n">ConnectionType</span>
+<span class="kn">from</span> <span class="nn">azure.ai.evaluation</span> <span class="kn">import</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">GroundednessEvaluator</span>
+<span class="kn">from</span> <span class="nn">azure.identity</span> <span class="kn">import</span> <span class="n">DefaultAzureCredential</span>
+
+<span class="kn">from</span> <span class="nn">chat_with_products</span> <span class="kn">import</span> <span class="n">chat_with_products</span>
+
+<span class="c1"># load environment variables from the .env file at the root of this repo</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># create a project client using environment variables loaded from the .env file</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">AIProjectClient</span><span class="o">.</span><span class="n">from_connection_string</span><span class="p">(</span>
+    <span class="n">conn_str</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AIPROJECT_CONNECTION_STRING"</span><span class="p">],</span> <span class="n">credential</span><span class="o">=</span><span class="n">DefaultAzureCredential</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">connection</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_default</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="n">ConnectionType</span><span class="o">.</span><span class="n">AZURE_OPEN_AI</span><span class="p">,</span> <span class="n">include_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1"># 2. Define Evaluator Model to use</span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="n">evaluator_model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"azure_endpoint"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">endpoint_url</span><span class="p">,</span>
+    <span class="s2">"azure_deployment"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"EVALUATION_MODEL"</span><span class="p">],</span>
+    <span class="s2">"api_version"</span><span class="p">:</span> <span class="s2">"2024-06-01"</span><span class="p">,</span>
+    <span class="s2">"api_key"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">groundedness</span> <span class="o">=</span> <span class="n">GroundednessEvaluator</span><span class="p">(</span><span class="n">evaluator_model</span><span class="p">)</span>
+
+
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1"># 3. Create Eval Wrapper Function for Query</span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="k">def</span> <span class="nf">evaluate_chat_with_products</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">chat_with_products</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">query</span><span class="p">}])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"response"</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">"message"</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">"context"</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">"context"</span><span class="p">][</span><span class="s2">"grounding_data"</span><span class="p">]}</span>
+
+
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1"># 4. Run the Evaluation</span>
+<span class="c1">#    View Results Locally (Saved as JSON)</span>
+<span class="c1">#    Get Link to View Results in Foundry Portal</span>
+<span class="c1">#    NOTE:</span>
+<span class="c1">#    Evaluation takes more tokens </span>
+<span class="c1">#    Try to increase Rwate limit (Tokens per minute)</span>
+<span class="c1">#    Script should handle limit errors if needed</span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1"># Evaluate must be called inside of __main__, not on import</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">ASSET_PATH</span>
+
+    <span class="c1"># workaround for multiprocessing issue on linux</span>
+    <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+    <span class="kn">import</span> <span class="nn">multiprocessing</span>
+    <span class="kn">import</span> <span class="nn">contextlib</span>
+
+    <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+        <span class="n">multiprocessing</span><span class="o">.</span><span class="n">set_start_method</span><span class="p">(</span><span class="s2">"spawn"</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># run evaluation with a dataset and target function, log to the project</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">ASSET_PATH</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"chat_eval_data.jsonl"</span><span class="p">,</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">evaluate_chat_with_products</span><span class="p">,</span>
+        <span class="n">evaluation_name</span><span class="o">=</span><span class="s2">"evaluate_chat_with_products"</span><span class="p">,</span>
+        <span class="n">evaluators</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"groundedness"</span><span class="p">:</span> <span class="n">groundedness</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">evaluator_config</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"default"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{data.query}</span><span class="s2">"</span><span class="p">},</span>
+                <span class="s2">"response"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{target.response}</span><span class="s2">"</span><span class="p">},</span>
+                <span class="s2">"context"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{target.context}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="n">azure_ai_project</span><span class="o">=</span><span class="n">project</span><span class="o">.</span><span class="n">scope</span><span class="p">,</span>
+        <span class="n">output_path</span><span class="o">=</span><span class="s2">"./myevalresults.json"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">tabular_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"rows"</span><span class="p">))</span>
+
+    <span class="n">pprint</span><span class="p">(</span><span class="s2">"-----Summarized Metrics-----"</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"metrics"</span><span class="p">])</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="s2">"-----Tabular Result-----"</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">tabular_result</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">"View evaluation results in AI Studio: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'studio_url'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1"># Run the Evaluation using this command</span>
+<span class="c1">#    python evaluate.py </span>
+<span class="c1">#</span>
+<span class="c1"># You should see something like this:</span>
+
+<span class="sd">'''</span>
+<span class="sd">Starting prompt flow service...</span>
+<span class="sd">Start prompt flow service on 127.0.0.1:23333, version: 1.16.2.</span>
+<span class="sd">You can stop the prompt flow service with the following command:'pf service stop'.</span>
+
+<span class="sd">You can view the traces in local from http://127.0.0.1:23333/v1.0/ui/traces/?#run=main_evaluate_chat_with_products_rxna_3r9_20241216_163719_733780</span>
+<span class="sd">[2024-12-16 16:37:42 +0000][promptflow._sdk._orchestrator.run_submitter][INFO] - Submitting run main_evaluate_chat_with_products_rxna_3r9_20241216_163719_733780, log path: /home/vscode/.promptflow/.runs/main_evaluate_chat_with_products_rxna_3r9_20241216_163719_733780/logs.txt</span>
+<span class="sd">💬 Response: {'content': 'Could you please specify which camping table you are referring to? There are multiple options available, and I can provide information on them.', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': "Could you specify what aspect of care you're asking about? Are you looking for cleaning instructions, storage tips, or something else for the TrailWalker Hiking Shoes?", 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': "Could you please specify which tents you are comparing, or do you want information about a specific tent's waterproof features?", 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'The TrailBlaze Hiking Pants are crafted from high-quality nylon fabric.', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'The TrailMaster X4 Tent comes with an included carry bag, which makes transporting the tent easy and convenient. You can simply pack the tent into the carry bag and carry it as needed for your camping adventure. If you have any more specific questions about the tent or its features, feel free to ask!', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">💬 Response: {'content': 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?', 'role': 'assistant'}</span>
+<span class="sd">...</span>
+<span class="sd">...</span>
+<span class="sd">...</span>
+<span class="sd">'''</span>
+
+<span class="c1">#This is what a rate limit error looks like:</span>
+
+<span class="sd">'''</span>
+<span class="sd">[2024-12-16 16:44:07 +0000][promptflow.core._prompty_utils][ERROR] - Exception occurs: RateLimitError: Error code: 429 - {'error': {'code': '429', 'message': 'Requests to the ChatCompletions_Create Operation under Azure OpenAI API version 2024-06-01 have exceeded token rate limit of your current AIServices S0 pricing tier. Please retry after 60 seconds. Please contact Azure support service if you would like to further increase the default rate limit.'}}</span>
+<span class="sd">[2024-12-16 16:44:07 +0000][promptflow.core._prompty_utils][WARNING] - RateLimitError #2, Retry-After=60, Back off 60.0 seconds for retry.</span>
+<span class="sd">'''</span>
+
+<span class="c1"># This is what the final result looks like</span>
+
+<span class="sd">'''</span>
+<span class="sd">======= Run Summary =======</span>
+
+<span class="sd">Run name: "azure_ai_evaluation_evaluators_common_base_eval_asyncevaluatorbase_rvrjml8t_20241216_164205_696721"</span>
+<span class="sd">Run status: "Completed"</span>
+<span class="sd">Start time: "2024-12-16 16:42:05.695977+00:00"</span>
+<span class="sd">Duration: "0:03:06.490785"</span>
+<span class="sd">Output path: "/home/vscode/.promptflow/.runs/azure_ai_evaluation_evaluators_common_base_eval_asyncevaluatorbase_rvrjml8t_20241216_164205_696721"</span>
+
+<span class="sd">======= Combined Run Summary (Per Evaluator) =======</span>
+
+<span class="sd">{</span>
+<span class="sd">    "groundedness": {</span>
+<span class="sd">        "status": "Completed",</span>
+<span class="sd">        "duration": "0:03:06.490785",</span>
+<span class="sd">        "completed_lines": 13,</span>
+<span class="sd">        "failed_lines": 0,</span>
+<span class="sd">        "log_path": "/home/vscode/.promptflow/.runs/azure_ai_evaluation_evaluators_common_base_eval_asyncevaluatorbase_rvrjml8t_20241216_164205_696721"</span>
+<span class="sd">    }</span>
+<span class="sd">}</span>
+
+<span class="sd">====================================================</span>
+
+<span class="sd">Evaluation results saved to "/workspaces/learns-azure-ai-foundry/src/api/myevalresults.json".</span>
+
+<span class="sd">'-----Summarized Metrics-----'</span>
+<span class="sd">{'groundedness.gpt_groundedness': 1.4615384615384615,</span>
+<span class="sd">'groundedness.groundedness': 1.4615384615384615}</span>
+<span class="sd">'-----Tabular Result-----'</span>
+<span class="sd">                                    outputs.response  ... line_number</span>
+<span class="sd">0   Could you please specify which tents you are c...  ...           0</span>
+<span class="sd">1   Could you please specify which camping table y...  ...           1</span>
+<span class="sd">2   Sorry, I only can answer queries related to ou...  ...           2</span>
+<span class="sd">3   Could you specify what aspect of care you're a...  ...           3</span>
+<span class="sd">4   Sorry, I only can answer queries related to ou...  ...           4</span>
+<span class="sd">5   The TrailMaster X4 Tent comes with an included...  ...           5</span>
+<span class="sd">6   Sorry, I only can answer queries related to ou...  ...           6</span>
+<span class="sd">7   The TrailBlaze Hiking Pants are crafted from h...  ...           7</span>
+<span class="sd">8   Sorry, I only can answer queries related to ou...  ...           8</span>
+<span class="sd">9   Sorry, I only can answer queries related to ou...  ...           9</span>
+<span class="sd">10  Sorry, I only can answer queries related to ou...  ...          10</span>
+<span class="sd">11  Sorry, I only can answer queries related to ou...  ...          11</span>
+<span class="sd">12  Sorry, I only can answer queries related to ou...  ...          12</span>
+
+<span class="sd">[13 rows x 8 columns]</span>
+<span class="sd">('View evaluation results in AI Studio: '</span>
+<span class="sd">'https://ai.azure.com/build/evaluation/XXXXXXX?wsid=/subscriptions/XXXXXXXX/resourceGroups/ninarasi-ragchat-rg/providers/Microsoft.MachineLearningServices/workspaces/ninarasi-ragchat-v1')</span>
+<span class="sd">'''</span>
+
+<span class="c1"># ----------------------------------------------</span>
+</code></pre></div></td></tr></table></div>
+</div>
 
 
 
