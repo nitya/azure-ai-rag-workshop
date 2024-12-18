@@ -1205,6 +1205,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-try-more-evaluators" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Try More Evaluators
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1410,6 +1419,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-try-more-evaluators" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Try More Evaluators
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1477,6 +1495,79 @@
 <h2 id="4-build-custom-charts">4. Build Custom Charts<a class="headerlink" href="#4-build-custom-charts" title="Permanent link">¶</a></h2>
 <p>One of the value propositions of using the Azure AI Foundry portal is the ability to create custom charts based on the evaluation results. Click the <code>Custom</code> tab and walk through the creation dialog to add visuals that reflect specific views into the data. For example, this view helps us see that a disproportionate number of responses were in the <code>Sorry, I only can answer queries related to ..</code> category, indicating that we may need to refine our chat prompt template guidance to ensure we are not rejecting valid queries.</p>
 <p><img alt="" src="../../img/Evaluations-4-Chart.png"/></p>
+<hr/>
+<h2 id="5-try-more-evaluators">5. Try More Evaluators<a class="headerlink" href="#5-try-more-evaluators" title="Permanent link">¶</a></h2>
+<p>The Azure AI Foundry platform has an <a href="https://learn.microsoft.com/en-us/azure/ai-studio/how-to/evaluate-generative-ai-app#view-and-manage-the-evaluators-in-the-evaluator-library">Evaluator library</a> with an extensive list of <a href="https://learn.microsoft.com/en-us/azure/ai-studio/concepts/evaluation-metrics-built-in?tabs=warning"><strong>built-in evaluators</strong></a> that cover risk &amp; safety, performance &amp; quality assessment. </p>
+<p><img alt="" src="../../img/Evaluations-5-Library.png"/></p>
+<details class="task">
+<summary>HOMEWORK: Try adding more evaluators to the script</summary>
+<p>To use a named evaluator - update the <code>evaluate.py</code> script to import the selected options as shown below.</p>
+<ol>
+<li>
+<p>Import the evaluators
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">azure.ai.evaluation</span> <span class="kn">import</span> <span class="n">F1ScoreEvaluator</span><span class="p">,</span> <span class="n">RelevanceEvaluator</span><span class="p">,</span> <span class="n">ViolenceEvaluator</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Configure them with the chosen evaluation model</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">evaluator_model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"azure_endpoint"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">endpoint_url</span><span class="p">,</span>
+    <span class="s2">"azure_deployment"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"EVALUATION_MODEL"</span><span class="p">],</span>
+    <span class="s2">"api_version"</span><span class="p">:</span> <span class="s2">"2024-06-01"</span><span class="p">,</span>
+    <span class="s2">"api_key"</span><span class="p">:</span> <span class="n">connection</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">f1score</span> <span class="o">=</span> <span class="n">F1ScoreEvaluator</span><span class="p">(</span><span class="n">evaluator_model</span><span class="p">)</span>
+<span class="n">relevance</span> <span class="o">=</span> <span class="n">RelevanceScoreEvaluator</span><span class="p">(</span><span class="n">evaluator_model</span><span class="p">)</span>
+<span class="n">violence</span> <span class="o">=</span> <span class="n">ViolenceScoreEvaluator</span><span class="p">(</span><span class="n">evaluator_model</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>Specify them in the call to the evaluate function</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">ASSET_PATH</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"chat_eval_data.jsonl"</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">evaluate_chat_with_products</span><span class="p">,</span>
+    <span class="n">evaluation_name</span><span class="o">=</span><span class="s2">"evaluate_chat_with_products"</span><span class="p">,</span>
+    <span class="n">evaluators</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"groundedness"</span><span class="p">:</span> <span class="n">groundedness</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">evaluator_config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"default"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{data.query}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="s2">"response"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{target.response}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="s2">"context"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"$</span><span class="si">{target.context}</span><span class="s2">"</span><span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">azure_ai_project</span><span class="o">=</span><span class="n">project</span><span class="o">.</span><span class="n">scope</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="s2">"./myevalresults.json"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
+</details>
 
 
 
