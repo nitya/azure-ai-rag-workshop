@@ -1,6 +1,20 @@
 # Introduction
 
-This repository contains the source and instructions guide for a workshop on building a RAG-based chat app using Azure AI Foundry. The workshop is derived from [the official 3-part tutorial](https://learn.microsoft.com/azure/ai-studio/tutorials/copilot-sdk-create-resources) and adapted to provide additional resources and suggestions for self-guided learners.
+## Azure AI Foundry Architecture
+
+The [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/concepts/architecture) provides a **unified experience for both AI developers and data scientists** to build, evaluate, and deploy AI models through a **web portal, SDK, or CLI**. Azure AI Foundry is built on capabilities and services provided by other Azure services. The figure below provides the big picture of the core components and capabilities provide to support end-to-end development of enterprise-grade generative AI solutions.
+
+![Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-studio/media/concepts/ai-studio-architecture.png)
+
+---
+
+## RAG Chat App Workshops
+
+This repository contains the source and instructions guide for a workshop that takes you step-by-step through the process of building a RAG-based chat app using Azure AI Foundry. 
+
+!!! warning "WORKSHOP UPDATE: JAN 2025<br/> The DEC 2024 workshop followed a hybrid approach with setup using Azure AI Portal and ideation/evaluation using Azure AI SDK. That path can now be found under the _1 Hybrid Workshop_ menu option. Look  for updates to a _2 Portal-First_ option that provides an alternative path which prioritizes using Portal features."
+
+The hybrid workshop is derived from [the official 3-part tutorial](https://learn.microsoft.com/azure/ai-studio/tutorials/copilot-sdk-create-resources) and adapted to provide additional resources and suggestions for self-guided learners. The portal-first option is being assembled from various how-to and tutorial options in the official docs, for comparison.
 
 ---
 

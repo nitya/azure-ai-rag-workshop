@@ -38,6 +38,18 @@ This repository is instrumented with a `devcontainer.json` to give you a develop
 
 1. Open a _new_ terminal window in Visual Studio Code, and use this window for executing further commands from the guide.
 
+## Cleanup
+
+This workshop will deploy AI models and an Azure AI Search resource that have associated costs for usage. The workshop also uses GitHub Codespaces which has a relatively generous _but finite_ quota for usage.
+
+To minimize unexpected Azure costs or usage of your codespaces quota, please remember to do the following:
+
+1. Delete the GitHub Codespaces instance by visiting [https://github.com/codespaces/](), selecting your specific Codespace instance, opening the dropdown menu and clicking **Delete**.
+1. Delete the Resource Group for the project by visiting [https://portal.azure.com](), selecting the relevant resource group and clicking **Delete resource group** in options.
+
+Revisit both pages after sufficient time has past for the tasks to be completed. Refresh to make sure the resources were cleaned up correctly.
+
+---
 
 ## Troubleshooting
 
