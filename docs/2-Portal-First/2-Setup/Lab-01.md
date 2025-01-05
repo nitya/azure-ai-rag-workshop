@@ -310,4 +310,4 @@ To learn more, check out these two core resources:
 
 ---
 
-_This completes the guest tour of the Azure AI Foundry Portal. To explore further capabilities, you will need to login with an Azure subscription (as explored in next section). First, three things to know: Azure AI Foundry architecture, Azure AI Project resource, and Management Center_.
+_This completes the guest tour of the Azure AI Foundry Portal. To explore further capabilities, you will need to login with an Azure subscription (as explored in next section). Let's go!_.

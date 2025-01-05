@@ -60,12 +60,22 @@ def get_product_documents(messages: list, context: dict = None) -> dict:
         **intent_prompty.parameters,
     )
 
+    # the search_query returned here will be a stringified JSON object
     search_query = intent_mapping_response.choices[0].message.content
     logger.debug(f"🧠 Intent mapping: {search_query}")
 
-    # generate a vector representation of the search query
-    embedding = embeddings.embed(model=os.environ["EMBEDDINGS_MODEL"], input=search_query)
+    # -- OLD: generate a vector representation of the search query
+    # embedding = embeddings.embed(model=os.environ["EMBEDDINGS_MODEL"], input=search_query)
+
+    # --- NEW: generate a vector representation of the search query
+    #  The intent mapping response is a stringied JSON object 
+    #   with the intent and search_query components. We need to
+    #   extract the search_query term and create embedding from it
+    import json
+    intent_map = json.loads(search_query)
+    embedding = embeddings.embed(model=os.environ["EMBEDDINGS_MODEL"], input=intent_map["search_query"])
     search_vector = embedding.data[0].embedding
+    # --- END
 
     # search the index for products matching the search query
     vector_query = VectorizedQuery(vector=search_vector, k_nearest_neighbors=top, fields="contentVector")

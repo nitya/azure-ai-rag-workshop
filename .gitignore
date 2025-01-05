@@ -1,2 +1,4 @@
 .env
 site/
+.DS_Store
+.gitignore
