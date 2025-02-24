@@ -1,0 +1,54 @@
+name: Template Validation
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+jobs:
+  template_validation_job:
+    runs-on: ubuntu-latest
+    name: template validation
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: microsoft/template-validation-action@v0.3.2
+        id: validation
+        env:
+          AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Project-specific variables (matches azure-dev.yaml/azure.yaml/main.parameters.json)
+          AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+          AZURE_AIHUB_NAME: ${{ vars.AZURE_AIHUB_NAME }}
+          AZURE_AIPROJECT_NAME: ${{ vars.AZURE_AIPROJECT_NAME }}
+          AZURE_AISERVICES_NAME: ${{ vars.AZURE_AISERVICES_NAME }}
+          AZURE_SEARCH_SERVICE_NAME: ${{ vars.AZURE_SEARCH_SERVICE_NAME }}
+          AZURE_APPLICATION_INSIGHTS_NAME: ${{ vars.AZURE_APPLICATION_INSIGHTS_NAME }}
+          AZURE_CONTAINER_REGISTRY_NAME: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}
+          AZURE_KEYVAULT_NAME: ${{ vars.AZURE_KEYVAULT_NAME }}
+          AZURE_STORAGE_ACCOUNT_NAME: ${{ vars.AZURE_STORAGE_ACCOUNT_NAME }}
+          AZURE_LOG_ANALYTICS_WORKSPACE_NAME: ${{ vars.AZURE_LOG_ANALYTICS_WORKSPACE_NAME }}
+          USE_CONTAINER_REGISTRY: ${{ vars.USE_CONTAINER_REGISTRY }}
+          USE_APPLICATION_INSIGHTS: ${{ vars.USE_APPLICATION_INSIGHTS }}
+          USE_SEARCH_SERVICE: ${{ vars.USE_SEARCH_SERVICE }}
+          AZURE_AI_CHAT_DEPLOYMENT: ${{ vars.AZURE_AI_CHAT_DEPLOYMENT_NAME }}
+          AZURE_AI_CHAT_DEPLOYMENT_SKU: ${{ vars.AZURE_AI_CHAT_DEPLOYMENT_SKU }}
+          AZURE_AI_CHAT_DEPLOYMENT_CAPACITY: ${{ vars.AZURE_AI_CHAT_DEPLOYMENT_CAPACITY }}
+          AZURE_AI_CHAT_MODEL_FORMAT: ${{ vars.AZURE_AI_CHAT_MODEL_FORMAT }}
+          AZURE_AI_CHAT_MODEL_NAME: ${{ vars.AZURE_AI_CHAT_MODEL_NAME }}
+          AZURE_AI_CHAT_MODEL_VERSION: ${{ vars.AZURE_AI_CHAT_MODEL_VERSION }}
+          AZURE_AI_EMBED_DEPLOYMENT_NAME: ${{ vars.AZURE_AI_EMBED_DEPLOYMENT_NAME }}
+          AZURE_AI_EMBED_DEPLOYMENT_SKU: ${{ vars.AZURE_AI_EMBED_DEPLOYMENT_SKU }}
+          AZURE_AI_EMBED_DEPLOYMENT_CAPACITY: ${{ vars.AZURE_AI_EMBED_DEPLOYMENT_CAPACITY }}
+          AZURE_AI_EMBED_MODEL_FORMAT: ${{ vars.AZURE_AI_EMBED_MODEL_FORMAT }}
+          AZURE_AI_EMBED_MODEL_NAME: ${{ vars.AZURE_AI_EMBED_MODEL_NAME }}
+          AZURE_AI_EMBED_MODEL_VERSION: ${{ vars.AZURE_AI_EMBED_MODEL_VERSION }}
+          AZURE_EXISTING_AIPROJECT_CONNECTION_STRING: ${{ vars.AZURE_EXISTING_AIPROJECT_CONNECTION_STRING }}
+      - name: print result
+        run: cat ${{ steps.validation.outputs.resultFile }}

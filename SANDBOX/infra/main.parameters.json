@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "principalId": {
+      "value": "${AZURE_PRINCIPAL_ID}"
+    },
+    "resourceGroupName": {
+      "value": "${AZURE_RESOURCE_GROUP}"
+    },
+    "aiHubName": {
+      "value": "${AZURE_AIHUB_NAME}"
+    },
+    "aiProjectName": {
+      "value": "${AZURE_AIPROJECT_NAME}"
+    },
+    "aiServicesName": {
+      "value": "${AZURE_AISERVICES_NAME}"
+    },
+    "searchServiceName": {
+      "value": "${AZURE_SEARCH_SERVICE_NAME}"
+    },
+    "applicationInsightsName": {
+      "value": "${AZURE_APPLICATION_INSIGHTS_NAME}"
+    },
+    "containerRegistryName": {
+      "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
+    },
+    "keyVaultName": {
+      "value": "${AZURE_KEYVAULT_NAME}"
+    },
+    "storageAccountName": {
+      "value": "${AZURE_STORAGE_ACCOUNT_NAME}"
+    },
+    "logAnalyticsWorkspaceName": {
+      "value": "${AZURE_LOG_ANALYTICS_WORKSPACE_NAME}"
+    },
+    "useContainerRegistry": {
+      "value": "${USE_CONTAINER_REGISTRY=true}"
+    },
+    "useApplicationInsights": {
+      "value": "${USE_APPLICATION_INSIGHTS=true}"
+    },
+    "useSearchService": {
+      "value": "${USE_SEARCH_SERVICE=false}"
+    },
+    "chatDeploymentName": {
+      "value": "${AZURE_AI_CHAT_DEPLOYMENT_NAME=gpt-4o-mini}"
+    },
+    "chatModelFormat": {
+      "value": "${AZURE_AI_CHAT_MODEL_FORMAT=OpenAI}"
+    },
+    "chatModelName": {
+      "value": "${AZURE_AI_CHAT_MODEL_NAME=gpt-4o-mini}"
+    },
+    "chatModelVersion": {
+      "value": "${AZURE_AI_CHAT_MODEL_VERSION=2024-07-18}"
+    },
+    "chatDeploymentSku": {
+      "value": "${AZURE_AI_CHAT_DEPLOYMENT_SKU=GlobalStandard}"
+    },
+    "chatDeploymentCapacity": {
+      "value": "${AZURE_AI_CHAT_DEPLOYMENT_CAPACITY=30}"
+    },
+    "embedDeploymentName": {
+      "value": "${AZURE_AI_EMBED_DEPLOYMENT_NAME=text-embedding-ada-002}"
+    },
+    "embedModelFormat": {
+      "value": "${AZURE_AI_EMBED_MODEL_FORMAT=OpenAI}"
+    },
+    "embedModelName": {
+      "value": "${AZURE_AI_EMBED_MODEL_NAME=text-embedding-ada-002}"
+    },
+    "embedModelVersion": {
+      "value": "${AZURE_AI_EMBED_MODEL_VERSION=2}"
+    },
+    "embedDeploymentSku": {
+      "value": "${AZURE_AI_EMBED_DEPLOYMENT_SKU=Standard}"
+    },
+    "embedDeploymentCapacity": {
+      "value": "${AZURE_AI_EMBED_DEPLOYMENT_CAPACITY=30}"
+    },
+    "apiAppExists": {
+      "value": "${SERVICE_API_RESOURCE_EXISTS=false}"
+    },
+    "aiExistingProjectConnectionString": {
+      "value": "${AZURE_EXISTING_AIPROJECT_CONNECTION_STRING}"
+    }
+  }
+}

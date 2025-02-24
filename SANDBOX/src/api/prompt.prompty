@@ -1,0 +1,10 @@
+---
+model:
+    api: chat
+    parameters:
+        temperature: 0.7
+        top_p: 0.9
+        max_tokens: 500
+---
+system:
+You are a helpful assistant

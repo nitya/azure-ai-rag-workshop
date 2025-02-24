@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: azd-aistudio-starter
+metadata:
+  template: azd-aistudio-starter@0.0.1-beta
+
+services:
+  api:
+    project: ./src
+    language: py
+    host: containerapp
+    docker:
+      remoteBuild: true
+
+hooks:
+  postprovision:
+    windows:
+      shell: pwsh
+      run: ./scripts/write_env.ps1
+      continueOnError: true
+      interactive: true
+    posix:
+      shell: sh
+      run: ./scripts/write_env.sh
+      continueOnError: true
+      interactive: true
+
+pipeline:
+  variables:
+    - AZURE_RESOURCE_GROUP
+    - AZURE_AIHUB_NAME
+    - AZURE_AIPROJECT_NAME
+    - AZURE_AISERVICES_NAME
+    - AZURE_SEARCH_SERVICE_NAME
+    - AZURE_APPLICATION_INSIGHTS_NAME
+    - AZURE_CONTAINER_REGISTRY_NAME
+    - AZURE_KEYVAULT_NAME
+    - AZURE_STORAGE_ACCOUNT_NAME
+    - AZURE_LOG_ANALYTICS_WORKSPACE_NAME
+    - USE_CONTAINER_REGISTRY
+    - USE_APPLICATION_INSIGHTS
+    - USE_SEARCH_SERVICE
+    - AZURE_AI_CHAT_DEPLOYMENT_NAME
+    - AZURE_AI_CHAT_DEPLOYMENT_SKU
+    - AZURE_AI_CHAT_DEPLOYMENT_CAPACITY
+    - AZURE_AI_CHAT_MODEL_NAME
+    - AZURE_AI_CHAT_MODEL_FORMAT
+    - AZURE_AI_CHAT_MODEL_VERSION
+    - AZURE_AI_EMBED_DEPLOYMENT_NAME
+    - AZURE_AI_EMBED_DEPLOYMENT_SKU
+    - AZURE_AI_EMBED_DEPLOYMENT_CAPACITY
+    - AZURE_AI_EMBED_MODEL_NAME
+    - AZURE_AI_EMBED_MODEL_FORMAT
+    - AZURE_AI_EMBED_MODEL_VERSION
+    - AZURE_EXISTING_AIPROJECT_CONNECTION_STRING
