@@ -3,7 +3,7 @@
 // Config: https://github.com/devcontainers/templates/tree/main/src/python
 // Dockerfile Usage: https://containers.dev/guide/dockerfile
 {
-    "name": "Azure AI Foundry",
+    "name": "azureai-ragchat-azd",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".."
@@ -24,17 +24,22 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "ms-azuretools.azure-dev",
+                "ms-azuretools.vscode-bicep",
                 "ms-python.python",
                 "ms-toolsai.jupyter",
-                "ms-toolsai.prompty@prerelease",
-                "ms-azuretools.vscode-bicep",
-                "ms-azuretools.vscode-docker",
-                "rogalmic.bash-debug"
+                "GitHub.vscode-github-actions",
+                "ms-toolsai.prompty@prerelease"
             ]
         }
     },
     "postCreateCommand": "bash .devcontainer/post-create.sh",
     "forwardPorts": [
-        8000
-    ]
+        8000,
+        50505
+    ],
+    "remoteUser": "vscode",
+    "hostRequirements": {
+        "memory": "8gb"
+    }
 }

@@ -40,7 +40,7 @@ This template creates everything you need to get started with Azure AI Foundry:
 
 * [AI Hub Resource](https://learn.microsoft.com/azure/ai-studio/concepts/ai-resources)
 * [AI Project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects)
-* [Azure AI Service](https://learn.microsoft.com/azure/ai-services): Default models deployed are gpt-4o-mini and text-embedding-ada-002, but any Azure AI models can be specified per the [documentation](docs/deploy_customization.md#customizing-model-deployments).
+* [Azure AI Service](https://learn.microsoft.com/azure/ai-services): Default models deployed are gpt-4o-mini and text-embedding-ada-002, but any Azure AI models can be specified per the [documentation](deploy_customization.md#customizing-model-deployments).
 * [AI Search Service](https://learn.microsoft.com/azure/search/) *(Optional, disabled by default)*
 
 The template also includes dependent resources required by all AI Hub resources:
@@ -52,7 +52,7 @@ The template also includes dependent resources required by all AI Hub resources:
 
 ## Architecture diagram
 
-![Architecture diagram showing that user input used in conjunction with user identity to call app code running in Azure Container apps that processes the user input and generates a response to the user. The app code leverages Azure AI projects, Azure AI model inference, prompty, and Azure AI Search.](docs/architecture.png)
+![Architecture diagram showing that user input used in conjunction with user identity to call app code running in Azure Container apps that processes the user input and generates a response to the user. The app code leverages Azure AI projects, Azure AI model inference, prompty, and Azure AI Search.](architecture.png)
 
 ## Getting started
 
@@ -122,8 +122,8 @@ Once you've opened the project in [Codespaces](#github-codespaces), in [Dev Cont
     azd auth login
     ```
 
-2. (Optional) If you would like to customize the deployment to [disable resources](docs/deploy_customization.md#disabling-resources), [customize resource names](docs/deploy_customization.md#customizing-resource-names),
-or [customize the models](docs/deploy_customization.md#customizing-model-deployments), you can follow those steps now.
+2. (Optional) If you would like to customize the deployment to [disable resources](deploy_customization.md#disabling-resources), [customize resource names](deploy_customization.md#customizing-resource-names),
+or [customize the models](deploy_customization.md#customizing-model-deployments), you can follow those steps now.
 
 3. Provision and deploy all the resources:
 

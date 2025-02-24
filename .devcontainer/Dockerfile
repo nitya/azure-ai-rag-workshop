@@ -15,10 +15,14 @@ RUN sudo apt-get update && sudo apt-get install -y \
 
 # Copy requirements.txt and install the Python packages
 COPY requirements.txt .
+COPY requirements-dev.txt .
 
 # Install key packages in one layer to reduce image size and build time
 RUN pip install -r requirements.txt \    
     && pip install keyrings.alt dbus-python ipython ipykernel mkdocs-material
+
+# From azd template
+RUN pip install -r requirements-dev.txt && python3 -m pip install -e  src
 
 # Configure the IPython kernel
 RUN ipython kernel install --name "python3" --user
