@@ -1,0 +1,4129 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn to buid, evaluate, and deploy, a RAG-based chat app on Azure AI Foundry">
+      
+      
+        <meta name="author" content="Nitya Narasimhan">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/azure-ai-rag-workshop/3-AZD-Template/1-Introduction/03/">
+      
+      
+        <link rel="prev" href="../02/">
+      
+      
+        <link rel="next" href="../../2-RAG-App-Customization/01/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>1.3 Azure AI Template - RAG Chat App on Azure AI Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-1L8JBVW74T"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-1L8JBVW74T",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-1L8JBVW74T",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#13-azure-ai-template" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="RAG Chat App on Azure AI Foundry" class="md-header__button md-logo" aria-label="RAG Chat App on Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RAG Chat App on Azure AI Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.3 Azure AI Template
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="pink"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nitya/azure-ai-rag-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nitya/azure-ai-rag-workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1-Hybrid-Workshop/1-Overview/00/" class="md-tabs__link">
+          
+  
+    
+  
+  1 Hybrid Workshop
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../2-Portal-First/1-Overview/00/" class="md-tabs__link">
+          
+  
+    
+  
+  2 Portal First
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01/" class="md-tabs__link">
+          
+  
+    
+  
+  3 AZD Template
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RAG Chat App on Azure AI Foundry" class="md-nav__button md-logo" aria-label="RAG Chat App on Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    RAG Chat App on Azure AI Foundry
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nitya/azure-ai-rag-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nitya/azure-ai-rag-workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Hybrid Workshop
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1 Hybrid Workshop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            1 Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/1-Overview/00/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.1 Learning Objectives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/1-Overview/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.2 Application Scenario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/1-Overview/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.3 Application Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/1-Overview/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.4 RAG Chat Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            2 Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.1 Create AI Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.2 Deploy AI Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.3 Add Azure AI Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.4 Add App Insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.5 Setup Local Environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.6 Setup Project Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/2-Setup/07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.7 Configure Env Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Ideate
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            3 Ideate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.1 Add Application Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.2 Create Search Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.3 Retrieve Related Products
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.4 Understand Intent Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.5 Create Augmented Query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.6 Design Grounded Prompt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/3-Ideate/07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.7 Test with Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Evaluate
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            4 Evaluate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.1 Create Evaluation Dataset
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.2 Create Evaluation Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.3 Configure Evaluation Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.4 Run Evaluation Script
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.5 View Results Locally
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/4-Evaluate/06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4.6 View Results In Portal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Evolve
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            5 Evolve
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/5-Evolve/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.1 Recap: Build A Copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1-Hybrid-Workshop/5-Evolve/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.2 Refactor: Make it Better
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../1-Hybrid-Workshop/6-Cleanup/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    6 Cleanup
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            6 Cleanup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Portal First
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2 Portal First
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            1 Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/1-Overview/00/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.1 Learning Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/1-Overview/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.2 Application Lifecycle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/1-Overview/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.3 Azure AI Foundry Portal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            2 Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 Model Selection
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 Model Selection
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/01-Model-Selection/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Learning Objectives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/01-Model-Selection/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Model Catalog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/01-Model-Selection/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Model Benchmarks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/01-Model-Selection/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Model Card
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/01-Model-Selection/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Data, Privacy, &amp; Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02 Model Exploration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 Model Exploration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/02-Model-Exploration/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Learning Objectives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/02-Model-Exploration/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Create an AI project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/02-Model-Exploration/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Deploy &amp; Explore Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/2-Setup/02-Model-Exploration/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Use Chat Playground
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Ideate
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            3 Ideate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 Model Customization
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 Model Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/01-Model-Customization/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Learning Objectives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/01-Model-Customization/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Connect Azure AI Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/01-Model-Customization/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Create &amp; Update RBAC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/01-Model-Customization/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Add Grounding Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/01-Model-Customization/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Test Grounded Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02 Model Integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 Model Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/02-Model-Integration/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Learning Objectives
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/02-Model-Integration/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Deploy RAG App (Chat AI)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/02-Model-Integration/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Deploy Web App (Chat UI)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/3-Ideate/02-Model-Integration/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Chat With Your Data!
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Evaluate
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            4 Evaluate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/4-Evaluate/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. 🚧 | In Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Deploy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            5 Deploy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/5-Deploy/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. 🚧 | In Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 Cleanup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            6 Cleanup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2-Portal-First/6-Cleanup/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. 🚧 | In Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    3 AZD Template
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3 AZD Template
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            1 Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.1 Azure Developer CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.2 AZD Templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1.3 Azure AI Template
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    1.3 Azure AI Template
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-before-we-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Before We Begin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-view-ai-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. View AI Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-initialize-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Initialize Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Initialize Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create Sandbox
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-run-azd-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Run azd init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-complete-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Complete init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-merge-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Merge Sandbox
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-validate-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Validate Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Validate Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-authenticate" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Authenticate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-provision-and-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Provision and Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-environment-vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Environment Vars
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-local-dev-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Local Dev Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-local-chat-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Local Chat UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-azure-portal-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Azure Portal Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-validate-container-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Validate Container App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-azure-ai-foundry-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Azure AI Foundry Portal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-validate-monitoring-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Validate Monitoring Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 RAG App Customization
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            2 RAG App Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.1 Explore Template
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.2 Add App Source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.3 Create IaC Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.4 Update azure.yaml
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.5 Provision &amp; Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.6 Add CI/CD Pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-RAG-App-Customization/07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2.7 Delete &amp; Cleanup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Troubleshooting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            3 Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Troubleshooting/01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.1 Template Creation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3-Troubleshooting/02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3.2 Template Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-before-we-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Before We Begin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-view-ai-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. View AI Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-initialize-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Initialize Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Initialize Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create Sandbox
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-run-azd-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Run azd init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-complete-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Complete init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-merge-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Merge Sandbox
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-validate-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Validate Template
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Validate Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-authenticate" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Authenticate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-provision-and-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Provision and Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-environment-vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Environment Vars
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-local-dev-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Local Dev Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-local-chat-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Local Chat UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-azure-portal-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Azure Portal Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-validate-container-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Validate Container App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-azure-ai-foundry-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Azure AI Foundry Portal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-validate-monitoring-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Validate Monitoring Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="13-azure-ai-template">1.3 Azure AI Template<a class="headerlink" href="#13-azure-ai-template" title="Permanent link">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">The Azure AI Foundry <a href="https://ai.azure.com/build/code">Code Preview</a> tab in an active Azue AI project will list 3 azd-capable templates, one of which is the <a href="https://github.com/Azure-Samples/azureai-basic-python">Get started with Azure AI</a> basic starter template. We'll use this as our reference in this tutorial.</p>
+</div>
+<h2 id="1-before-we-begin">1. Before We Begin<a class="headerlink" href="#1-before-we-begin" title="Permanent link">¶</a></h2>
+<p>Let's look at what our default folder structure looks like. You should see the following. Make note of this so we can identify the new folders/files that get added when we "azd init" the repo.</p>
+<div class="highlight"><pre><span></span><code>.devcontainer/<span class="w">   </span><span class="c1"># Launch pre-build dev environment in GitHub Codespaces</span>
+.github/<span class="w">         </span><span class="c1"># Add workflows for automated CI/CD actions</span>
+data/<span class="w">            </span><span class="c1"># Contains data for AI application needs</span>
+docs/<span class="w">            </span><span class="c1"># Contains documentation for AI application workshop</span>
+src.sample/<span class="w">      </span><span class="c1"># Contains app code (working sample)</span>
+env.sample/<span class="w">      </span><span class="c1"># Contains env variables (placeholder sample)</span>
+.gitignore<span class="w">       </span><span class="c1"># Contains .gitignore rules</span>
+LICENSE<span class="w">          </span>
+mkdocs.yml<span class="w">       </span><span class="c1"># Configuration for mkdocs documentation site</span>
+README.md<span class="w">        </span><span class="c1"># README for repo</span>
+REFERENCES.md<span class="w">    </span><span class="c1"># REFERENCES for repo</span>
+requirements.txt<span class="w"> </span><span class="c1"># Python dependencies for application</span>
+</code></pre></div>
+<h2 id="2-view-ai-template">2. View AI Template<a class="headerlink" href="#2-view-ai-template" title="Permanent link">¶</a></h2>
+<p>Let's take a look at what the folder structure for the <a href="https://github.com/Azure-Samples/azureai-basic-python">Get started with Azure AI</a> basic starter template looks like by visiting that repo:</p>
+<div class="highlight"><pre><span></span><code>.azdo/pipelines/<span class="w">        </span><span class="c1"># Azure DevOps pipelines </span>
+.devcontainer/<span class="w">          </span><span class="c1"># Dev Container configuration</span>
+.github/<span class="w">                </span><span class="c1"># GitHub Actions workflows</span>
+docs/<span class="w">                   </span><span class="c1"># README assets and docs</span>
+infra/<span class="w">                  </span><span class="c1"># Infrastructure-as-code assets</span>
+scripts/<span class="w">                </span><span class="c1"># Scripts for azd hooks </span>
+src/<span class="w">                    </span><span class="c1"># Application source</span>
+.gitignore
+.pre-commit-config.yaml<span class="w"> </span><span class="c1"># Pre-commit hooks: code quality checks</span>
+LICENSE
+README.md
+azure.yaml<span class="w">               </span><span class="c1"># Azure Developer CLI configuration</span>
+pyproject.toml<span class="w">           </span><span class="c1"># Python Project configuration</span>
+requirements-dev.txt<span class="w">     </span><span class="c1"># Python Project package dependencies</span>
+</code></pre></div>
+<h2 id="3-initialize-template">3. Initialize Template<a class="headerlink" href="#3-initialize-template" title="Permanent link">¶</a></h2>
+<p>To use that template, we need to run the right azd command in our repo.</p>
+<div class="admonition info">
+<p class="admonition-title"><strong>Note</strong>: In this case we are retrofitting an existing sample using the azd template.</p>
+<p>This means we have to reconcile conflicts in files like <code>.devcontainer.json</code> which get overwritten by the <code>azd init</code> process when using an existing template. This leads to the roundabout process described below. Instead you can also start with an empty repository and initialize the template first - then refactor the contents step by step to reflect your application needs. We can explore that approach later.</p>
+</div>
+<h3 id="31-create-sandbox">3.1 Create Sandbox<a class="headerlink" href="#31-create-sandbox" title="Permanent link">¶</a></h3>
+<p>Let's see what happens when we run this at the root of our existing folder:</p>
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>init<span class="w"> </span>-t<span class="w"> </span>azureai-basic-python
+</code></pre></div>
+<p>You should see a warning like this:</p>
+<div class="highlight"><pre><span></span><code>Initializing<span class="w"> </span>an<span class="w"> </span>app<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>on<span class="w"> </span>Azure<span class="w"> </span><span class="o">(</span>azd<span class="w"> </span>init<span class="o">)</span>
+
+WARNING:<span class="w"> </span>The<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>empty.
+Initializing<span class="w"> </span>an<span class="w"> </span>app<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>directory<span class="w"> </span>may<span class="w"> </span>overwrite<span class="w"> </span>existing<span class="w"> </span>files.
+
+?<span class="w"> </span>Continue<span class="w"> </span>initializing<span class="w"> </span>an<span class="w"> </span>app<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">'/workspaces/azure-ai-rag-workshop'</span>?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>
+</code></pre></div>
+<p>We don't want this to happen since we are using the <code>.devcontaine/</code>, <code>.github/</code>, <code>LICENSE</code>, <code>README.md</code> and <code>docs/</code> filenames for our own content. Instead, let's see what happens when we run this in a <em>sandbox</em> directory. We can then compare the contents and move them into the root folder in a more informed manner.</p>
+<p><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>SANDBOX
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>SANDBOX/
+</code></pre></div></p>
+<h3 id="32-run-azd-init">3.2 Run <code>azd init</code><a class="headerlink" href="#32-run-azd-init" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>init<span class="w"> </span>-t<span class="w"> </span>azureai-basic-python
+</code></pre></div>
+<p>You now see something like this:</p>
+<div class="highlight"><pre><span></span><code>Initializing<span class="w"> </span>an<span class="w"> </span>app<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>on<span class="w"> </span>Azure<span class="w"> </span><span class="o">(</span>azd<span class="w"> </span>init<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Downloading<span class="w"> </span>template<span class="w"> </span>code<span class="w"> </span>to:<span class="w"> </span>/workspaces/azure-ai-rag-workshop/SANDBOX
+
+?<span class="w"> </span>Enter<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>environment<span class="w"> </span>name:<span class="w"> </span><span class="o">[</span>?<span class="w"> </span><span class="k">for</span><span class="w"> </span>help<span class="o">]</span><span class="w"> </span>
+</code></pre></div>
+<p>At this point, if you view the <code>SANDBOX/</code> folder in the explorer sidebar on VS Code, you will see the file structure from <a href="#2-view-ai-template">the template view</a> replicated here, along with an empty <code>.azure/</code> folder.</p>
+<h3 id="33-complete-init">3.3 Complete init<a class="headerlink" href="#33-complete-init" title="Permanent link">¶</a></h3>
+<p>Let's continue with the <code>azd init</code> wizard workflow by providing an environment name. Let's pick <em>ragchat-aip</em> as a symbolic name for the RAG Chat app on the Azure AI Platform. You should now see this:</p>
+<div class="highlight"><pre><span></span><code>?<span class="w"> </span>Enter<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>environment<span class="w"> </span>name:<span class="w"> </span>ragchat-aip
+
+SUCCESS:<span class="w"> </span>New<span class="w"> </span>project<span class="w"> </span>initialized!<span class="w">        </span>
+You<span class="w"> </span>can<span class="w"> </span>view<span class="w"> </span>the<span class="w"> </span>template<span class="w"> </span>code<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>directory:<span class="w"> </span>/workspaces/azure-ai-rag-workshop/SANDBOX
+Learn<span class="w"> </span>more<span class="w"> </span>about<span class="w"> </span>running<span class="w"> </span>3rd<span class="w"> </span>party<span class="w"> </span>code<span class="w"> </span>on<span class="w"> </span>our<span class="w"> </span>DevHub:<span class="w"> </span>https://aka.ms/azd-third-party-code-notice
+</code></pre></div>
+<p>If you look in the <code>SANDBOX/</code> folder you will now see the <code>.azure/</code> folder is updated:</p>
+<div class="highlight"><pre><span></span><code>.azure/
+<span class="w">    </span>ragchat-aip/
+<span class="w">        </span>.env<span class="w">             </span><span class="c1"># has: AZURE_ENV_NAME="ragchat-aip"</span>
+<span class="w">        </span>config.json<span class="w">      </span><span class="c1"># is empty</span>
+<span class="w">    </span>.gitignore
+<span class="w">    </span>config.json<span class="w">          </span><span class="c1"># has: {"version":1,"defaultEnvironment":"ragchat-aip"}</span>
+</code></pre></div>
+<h3 id="34-merge-sandbox">3.4 Merge Sandbox<a class="headerlink" href="#34-merge-sandbox" title="Permanent link">¶</a></h3>
+<p>We can now merge the contents from <code>SANDBOX/</code> into the root of the folder in a way that preserves pre-existing files:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>SANDBOX/
+mv<span class="w"> </span>.azdo<span class="w"> </span>.azure<span class="w"> </span>../.
+mv<span class="w"> </span>README.md<span class="w"> </span>../README.azd.md
+mv<span class="w"> </span>docs/*<span class="w"> </span>../.
+mv<span class="w"> </span>infra<span class="w"> </span>scripts<span class="w"> </span>src<span class="w"> </span>.pre-commit-config.yaml<span class="w"> </span>azure.yaml<span class="w"> </span>pyproject.toml<span class="w"> </span>requirements-dev.txt<span class="w"> </span>.gitignire<span class="w"> </span>../.
+mv<span class="w"> </span>.github/*<span class="w"> </span>../.github/
+mv<span class="w"> </span>.github/workflows/*<span class="w"> </span>../.github/workflows
+</code></pre></div>
+<p>Now we need to make a few fixes:</p>
+<ul>
+<li>
+<p>Update the <code>README.azd.md</code> to point to the right location (root) for the two files that were in the docs/ directory but are now at root level - so they resolve correctly.</p>
+</li>
+<li>
+<p>Add these two lines to the end of <code>.gitignore</code>
+<div class="highlight"><pre><span></span><code><span class="c1"># From RAG Chat</span>
+site/
+.DS_Store
+</code></pre></div></p>
+</li>
+</ul>
+<p>All that is left is the <code>.devcontainer.json</code> reconciliation. For convenience, just copy these files into the relevant files in <code>.devcontainer/</code> </p>
+<details class="note">
+<summary>1. Expand for contents to copy into <code>.devcontainer/devcontainer.json</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">devcontainer.json</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// Dev Container:</span>
+<span class="c1">// Format: https://aka.ms/devcontainer.json. </span>
+<span class="c1">// Config: https://github.com/devcontainers/templates/tree/main/src/python</span>
+<span class="c1">// Dockerfile Usage: https://containers.dev/guide/dockerfile</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"azureai-ragchat-azd"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"build"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"dockerfile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dockerfile"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="s2">".."</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"features"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"ghcr.io/devcontainers/features/azure-cli:1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"installBicep"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ml"</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"ghcr.io/devcontainers/features/git:1"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">"ghcr.io/azure/azure-dev/azd:latest"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">"ghcr.io/devcontainers/features/docker-in-docker:2"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">"ghcr.io/devcontainers/features/github-cli:1"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nt">"ghcr.io/devcontainers/features/node:1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.8.0"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"customizations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"vscode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"ms-azuretools.azure-dev"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"ms-azuretools.vscode-bicep"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"ms-python.python"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"ms-toolsai.jupyter"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"GitHub.vscode-github-actions"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"ms-toolsai.prompty@prerelease"</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"postCreateCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bash .devcontainer/post-create.sh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"forwardPorts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="mi">8000</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">50505</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"remoteUser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vscode"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"hostRequirements"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8gb"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<details class="task">
+<summary>2. Expand for contents to copy into <code>.devcontainer/Dockerfile</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Dockerfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code># Select base Docker image
+FROM mcr.microsoft.com/devcontainers/python:3.11-bullseye
+
+# Combine system &amp; package updates into a single run command
+# Clean up apt cache to reduce image size
+RUN sudo apt-get update &amp;&amp; sudo apt-get install -y \
+    gcc \
+    cmake \
+    pkg-config \
+    libdbus-1-dev \
+    libglib2.0-dev \
+&amp;&amp; python -m pip install --upgrade pip \
+&amp;&amp; sudo apt-get clean \
+&amp;&amp; sudo rm -rf /var/lib/apt/lists/*
+
+# Copy requirements.txt and install the Python packages
+COPY requirements.txt .
+COPY requirements-dev.txt .
+
+# Install key packages in one layer to reduce image size and build time
+RUN pip install -r requirements.txt \    
+    &amp;&amp; pip install keyrings.alt dbus-python ipython ipykernel mkdocs-material
+
+# From azd template
+RUN pip install -r requirements-dev.txt &amp;&amp; python3 -m pip install -e  src
+
+# Configure the IPython kernel
+RUN ipython kernel install --name "python3" --user
+
+# Install daily version of azd for latest changes
+# See: https://github.com/Azure/azure-dev/tree/main/cli/installer#download-from-daily-builds
+RUN curl -fsSL https://aka.ms/install-azd.sh | bash -s -- --version daily
+
+# ------------ Dev Container configuration -----------------
+# Adapted from https://github.com/Azure-Samples/contoso-chat
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="admonition task">
+<p class="admonition-title">3. We can now delete the <code>SANDBOX/</code> folder.</p>
+</div>
+<h2 id="4-validate-template">4. Validate Template<a class="headerlink" href="#4-validate-template" title="Permanent link">¶</a></h2>
+<p>Let's see if our merged repository is now an active azd template before we dive into the details and start modifying it!</p>
+<h3 id="41-authenticate">4.1 Authenticate<a class="headerlink" href="#41-authenticate" title="Permanent link">¶</a></h3>
+<p>First authenticate with Azure - use the <code>--use-device-code</code> flag if running in GitHub Codespaces.</p>
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--use-device-code
+</code></pre></div>
+<p>Complete the workflow as instructed - you should see this on success:</p>
+<div class="highlight"><pre><span></span><code>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>you<span class="w"> </span>to<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>authentication<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>browser...
+Device<span class="w"> </span>code<span class="w"> </span>authentication<span class="w"> </span>completed.
+</code></pre></div>
+<h3 id="42-provision-and-deploy">4.2 Provision and Deploy<a class="headerlink" href="#42-provision-and-deploy" title="Permanent link">¶</a></h3>
+<p>Provision and deploy template using the command below. You will be asked to select the subscription and location for deployment. It should then update the <code>.azure/.env</code> file with the relevant parameters, then create a resource group called <code>rg-ragchat-aip</code> in which it will provision the resources and deploy the app.</p>
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>up
+</code></pre></div>
+<details class="warning">
+<summary>TROUBLESHOOTING: Insufficient Quota (expand to view)</summary>
+<ul>
+<li>
+<p>You may get an <code>InsufficientQuota</code> error if you pick the wrong location. One way to avoid this is to check <a href="https://ai.azure.com/quota">Quota</a> and pick a location with available quota.</p>
+</li>
+<li>
+<p>To fix the issue: the simplest option is to </p>
+<ul>
+<li><code>azd down --purge</code> (to release all resources created), </li>
+<li>then update the <code>.env</code> file (to select location with quota). <em>Takes time</em>.</li>
+<li>then <code>azd up</code> again to complete successful deploy. <em>Takes time</em>.</li>
+</ul>
+</li>
+</ul>
+</details>
+<div class="admonition success">
+<p class="admonition-title">You should see something like this for a successful deployment:</p>
+</div>
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--use-device-code
+Start<span class="w"> </span>by<span class="w"> </span>copying<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>code:<span class="w"> </span>BKWTV5URU
+Then<span class="w"> </span>press<span class="w"> </span>enter<span class="w"> </span>and<span class="w"> </span><span class="k">continue</span><span class="w"> </span>to<span class="w"> </span>log<span class="w"> </span><span class="k">in</span><span class="w"> </span>from<span class="w"> </span>your<span class="w"> </span>browser...
+
+Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>you<span class="w"> </span>to<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>authentication<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>browser...
+Device<span class="w"> </span>code<span class="w"> </span>authentication<span class="w"> </span>completed.
+Logged<span class="w"> </span><span class="k">in</span><span class="w"> </span>to<span class="w"> </span>Azure<span class="w"> </span>as<span class="w"> </span>XXXXXXXXXXX
+@nitya<span class="w"> </span>➜<span class="w"> </span>/workspaces/azure-ai-rag-workshop<span class="w"> </span><span class="o">(</span>azdify<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>azd<span class="w"> </span>up
+?<span class="w"> </span>Enter<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>environment<span class="w"> </span>name:<span class="w"> </span>nitya-ragchat-azd
+?<span class="w"> </span>Select<span class="w"> </span>an<span class="w"> </span>Azure<span class="w"> </span>Subscription<span class="w"> </span>to<span class="w"> </span>use:<span class="w">  </span>XXXXXXXXXXX
+?<span class="w"> </span>Select<span class="w"> </span>an<span class="w"> </span>Azure<span class="w"> </span>location<span class="w"> </span>to<span class="w"> </span>use:<span class="w"> </span><span class="m">17</span>.<span class="w"> </span><span class="o">(</span>US<span class="o">)</span><span class="w"> </span>East<span class="w"> </span>US<span class="w"> </span><span class="o">(</span>eastus<span class="o">)</span>
+
+Packaging<span class="w"> </span>services<span class="w"> </span><span class="o">(</span>azd<span class="w"> </span>package<span class="o">)</span>
+
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Packaging<span class="w"> </span>service<span class="w"> </span>api
+
+Provisioning<span class="w"> </span>Azure<span class="w"> </span>resources<span class="w"> </span><span class="o">(</span>azd<span class="w"> </span>provision<span class="o">)</span>
+Provisioning<span class="w"> </span>Azure<span class="w"> </span>resources<span class="w"> </span>can<span class="w"> </span>take<span class="w"> </span>some<span class="w"> </span>time.
+
+Subscription:<span class="w"> </span>XXXXXXXXXXX
+Location:<span class="w"> </span>East<span class="w"> </span>US
+
+You<span class="w"> </span>can<span class="w"> </span>view<span class="w"> </span>detailed<span class="w"> </span>progress<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>Azure<span class="w"> </span>Portal:
+https://portal.azure.com/#view/HubsExtension/DeploymentDetailsBlade/~/overview/id/XXXXXXXXXXX
+
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Resource<span class="w"> </span>group:<span class="w"> </span>rg-nitya-ragchat-azd<span class="w"> </span><span class="o">(</span><span class="m">1</span>.38s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Log<span class="w"> </span>Analytics<span class="w"> </span>workspace:<span class="w"> </span>log-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">16</span>.024s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Key<span class="w"> </span>Vault:<span class="w"> </span>kv-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">17</span>.236s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Application<span class="w"> </span>Insights:<span class="w"> </span>appi-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">1</span>.484s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Storage<span class="w"> </span>account:<span class="w"> </span>st26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">20</span>.605s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Container<span class="w"> </span>Registry:<span class="w"> </span>cr26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">22</span>.866s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Azure<span class="w"> </span>AI<span class="w"> </span>Services:<span class="w"> </span>aoai-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">39</span>.461s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Azure<span class="w"> </span>AI<span class="w"> </span>Services<span class="w"> </span>Model<span class="w"> </span>Deployment:<span class="w"> </span>aoai-26dkr7mmmco62/gpt-4o-mini<span class="w"> </span><span class="o">(</span>516ms<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Azure<span class="w"> </span>AI<span class="w"> </span>Services<span class="w"> </span>Model<span class="w"> </span>Deployment:<span class="w"> </span>aoai-26dkr7mmmco62/text-embedding-ada-002<span class="w"> </span><span class="o">(</span><span class="m">1</span>.067s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Machine<span class="w"> </span>Learning<span class="w"> </span>Workspace:<span class="w"> </span>ai-hub-26dkr7mmmco62<span class="w"> </span><span class="o">(</span>1m36.858s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Machine<span class="w"> </span>Learning<span class="w"> </span>Connection:<span class="w"> </span>ai-hub-26dkr7mmmco62/aoai-content-safety-connection<span class="w"> </span><span class="o">(</span><span class="m">2</span>.424s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Machine<span class="w"> </span>Learning<span class="w"> </span>Connection:<span class="w"> </span>ai-hub-26dkr7mmmco62/aoai-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">2</span>.747s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Machine<span class="w"> </span>Learning<span class="w"> </span>Workspace:<span class="w"> </span>ai-project-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">18</span>.583s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Container<span class="w"> </span>Apps<span class="w"> </span>Environment:<span class="w"> </span>containerapps-env-26dkr7mmmco62<span class="w"> </span><span class="o">(</span>2m24.217s<span class="o">)</span>
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Container<span class="w"> </span>App:<span class="w"> </span>ca-api-26dkr7mmmco62<span class="w"> </span><span class="o">(</span><span class="m">19</span>.817s<span class="o">)</span>
+
+Deploying<span class="w"> </span>services<span class="w"> </span><span class="o">(</span>azd<span class="w"> </span>deploy<span class="o">)</span>
+
+<span class="o">(</span>✓<span class="o">)</span><span class="w"> </span>Done:<span class="w"> </span>Deploying<span class="w"> </span>service<span class="w"> </span>api
+-<span class="w"> </span>Endpoint:<span class="w"> </span>https://ca-api-26dkr7mmmco62.XXXXXXXXXXX.eastus.azurecontainerapps.io
+
+SUCCESS:<span class="w"> </span>Your<span class="w"> </span>up<span class="w"> </span>workflow<span class="w"> </span>to<span class="w"> </span>provision<span class="w"> </span>and<span class="w"> </span>deploy<span class="w"> </span>to<span class="w"> </span>Azure<span class="w"> </span>completed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span><span class="m">58</span><span class="w"> </span>seconds.
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title"><strong>FAQ:</strong> How do resources get a consistent identifier like <code>26dkr7mmmco62</code>?</p>
+<p>This is one of the useful outcomes from our azd template configuration. The <code>main.bicep</code> file defines a <em>resourceToken</em> variable as shown below, that is then used as a suffix in naming every resource within that group. </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">infra/main.bicep</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
+</code></pre></div></td></tr></table></div>
+<p>The variable is created from a unique hash of the subscription, environment name and location strings for that deployment, reducing the possibility of naming conflicts but also making it easier for us to retrieve resources using a deterministic identifier (defined by resourceToken) later.</p>
+</div>
+<h3 id="43-environment-vars">4.3 Environment Vars<a class="headerlink" href="#43-environment-vars" title="Permanent link">¶</a></h3>
+<p>You should now be able to view the <code>.azure/&lt;env-name&gt;/.env</code> file and see the environment variables defined with values:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">AZURE_AIPROJECT_CONNECTION_STRING</span><span class="o">=</span><span class="s2">"eastus.api.azureml.ms;XXXXXXXXXXX;rg-nitya-ragchat-azd;ai-project-26dkr7mmmco62"</span>
+<span class="nv">AZURE_AI_CHAT_DEPLOYMENT_NAME</span><span class="o">=</span><span class="s2">"gpt-4o-mini"</span>
+<span class="nv">AZURE_CONTAINER_ENVIRONMENT_NAME</span><span class="o">=</span><span class="s2">"containerapps-env-26dkr7mmmco62"</span>
+<span class="nv">AZURE_CONTAINER_REGISTRY_ENDPOINT</span><span class="o">=</span><span class="s2">"cr26dkr7mmmco62.azurecr.io"</span>
+<span class="nv">AZURE_CONTAINER_REGISTRY_NAME</span><span class="o">=</span><span class="s2">"cr26dkr7mmmco62"</span>
+<span class="nv">AZURE_ENV_NAME</span><span class="o">=</span><span class="s2">"nitya-ragchat-azd"</span>
+<span class="nv">AZURE_LOCATION</span><span class="o">=</span><span class="s2">"eastus"</span>
+<span class="nv">AZURE_RESOURCE_GROUP</span><span class="o">=</span><span class="s2">"rg-nitya-ragchat-azd"</span>
+<span class="nv">AZURE_SUBSCRIPTION_ID</span><span class="o">=</span><span class="s2">"XXXXXXXXXXX"</span>
+<span class="nv">AZURE_TENANT_ID</span><span class="o">=</span><span class="s2">"XXXXXXXXXXX"</span>
+<span class="nv">SERVICE_API_ENDPOINTS</span><span class="o">=</span><span class="s2">"[\"https://ca-api-26dkr7mmmco62.XXXXXXXXXXX.eastus.azurecontainerapps.io\"]"</span>
+<span class="nv">SERVICE_API_IDENTITY_PRINCIPAL_ID</span><span class="o">=</span><span class="s2">"XXXXXXXXXXX"</span>
+<span class="nv">SERVICE_API_IMAGE_NAME</span><span class="o">=</span><span class="s2">"cr26dkr7mmmco62.azurecr.io/azd-aistudio-starter/api-nitya-ragchat-azd:azd-deploy-1740393080"</span>
+<span class="nv">SERVICE_API_NAME</span><span class="o">=</span><span class="s2">"ca-api-26dkr7mmmco62"</span>
+<span class="nv">SERVICE_API_RESOURCE_EXISTS</span><span class="o">=</span><span class="s2">"false"</span>
+<span class="nv">SERVICE_API_URI</span><span class="o">=</span><span class="s2">"https://ca-api-26dkr7mmmco62.XXXXXXXXXXX.eastus.azurecontainerapps.io"</span>
+</code></pre></div>
+<h3 id="44-local-dev-server">4.4 Local Dev Server<a class="headerlink" href="#44-local-dev-server" title="Permanent link">¶</a></h3>
+<p>You should now be able to run the local server using the deployed model endpoint as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>src/
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span><span class="s2">"api.main:create_app"</span><span class="w"> </span>--factory<span class="w"> </span>--reload
+</code></pre></div>
+<p>You should see output like this:</p>
+<div class="highlight"><pre><span></span><code>@nitya<span class="w"> </span>➜<span class="w"> </span>/workspaces/azure-ai-rag-workshop/src<span class="w"> </span><span class="o">(</span>azdify<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span><span class="s2">"api.main:create_app"</span><span class="w"> </span>--factory<span class="w"> </span>--reload
+INFO:<span class="w">     </span>Will<span class="w"> </span>watch<span class="w"> </span><span class="k">for</span><span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>these<span class="w"> </span>directories:<span class="w"> </span><span class="o">[</span><span class="s1">'/workspaces/azure-ai-rag-workshop/src'</span><span class="o">]</span>
+INFO:<span class="w">     </span>Uvicorn<span class="w"> </span>running<span class="w"> </span>on<span class="w"> </span>http://127.0.0.1:8000<span class="w"> </span><span class="o">(</span>Press<span class="w"> </span>CTRL+C<span class="w"> </span>to<span class="w"> </span>quit<span class="o">)</span>
+INFO:<span class="w">     </span>Started<span class="w"> </span>reloader<span class="w"> </span>process<span class="w"> </span><span class="o">[</span><span class="m">11197</span><span class="o">]</span><span class="w"> </span>using<span class="w"> </span>WatchFiles
+INFO:<span class="w">     </span>Started<span class="w"> </span>server<span class="w"> </span>process<span class="w"> </span><span class="o">[</span><span class="m">11199</span><span class="o">]</span>
+INFO:<span class="w">     </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>application<span class="w"> </span>startup.
+INFO:<span class="w">     </span>Application<span class="w"> </span>startup<span class="w"> </span>complete.
+</code></pre></div>
+<h3 id="45-local-chat-ui">4.5 Local Chat UI<a class="headerlink" href="#45-local-chat-ui" title="Permanent link">¶</a></h3>
+<p>Open the browser to the local dev server URL identified above. You will see a chat UI as shown.</p>
+<p><img alt="Chat UI" src="../../img/azd-deploy-localserver.png"/></p>
+<p>Ask questions (at the bottom) and get responses from the default model provisioned (gpt-4o-mini). <strong>Note: This default app does not do anything else - it is not grounded in data but is instrumented for analytics with App Insights</strong>.</p>
+<div class="admonition success">
+<p class="admonition-title">Your local development environment has been validated!</p>
+</div>
+<h3 id="46-azure-portal-resources">4.6 Azure Portal Resources<a class="headerlink" href="#46-azure-portal-resources" title="Permanent link">¶</a></h3>
+<p>The <code>azd up</code> command first provisions resources in Azure and then deploys the application. Let's take a quick look at what was provisioned by visiting the <a href="https://portal.azure.com">Azure Portal</a> and clicking the resource group for this project. <em>Note: Your resource group will be named <code>rg-&lt;env&gt;</code> where the _env</em> reflects the envrionment name chosen during deployment (e.g., "nitya-ragchat-azd")</p>
+<p><img alt="Azure AI Portal RG" src="../../img/azure-portal-rg.png"/></p>
+<p>You should see 11 records that include the following:</p>
+<ol>
+<li>An <strong>Azure AI hub</strong> resource - <em>manage billing, org-level admin</em></li>
+<li>An <strong>Azure AI project</strong> resource - <em>manage state, app-level admin</em></li>
+<li>An <strong>Azure AI services</strong> resource - <em>manage models, turnkey service integrations</em></li>
+<li>An <strong>Application Insights</strong> resource - <em>monitor performance (use in tracing)</em></li>
+<li>A <strong>Container App</strong> resource - <em>hosting chat AI endpoint (FastAPI server)</em></li>
+<li>A <strong>Container Apps Environment</strong> resource - <em>for container app admin</em></li>
+<li>A <strong>Managed Identity</strong> resource - <em>for secure keyless authentication</em> </li>
+<li>A <strong>Key Vault</strong> resource - <em>for storing secrets</em> </li>
+<li>A <strong>Log Analytics workspace</strong> resource - <em>for logging events</em> </li>
+<li>A <strong>Storage account</strong> resource - <em>for storing data (blob, file, queue or table)</em> </li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Your azd resource provisioning has been validated!</p>
+</div>
+<h3 id="47-validate-container-app">4.7 Validate Container App<a class="headerlink" href="#47-validate-container-app" title="Permanent link">¶</a></h3>
+<p>Click on the <strong>Container App</strong> resource.</p>
+<ol>
+<li>Look for the <em>Application Uri</em> property in the "Essentials" pane.</li>
+<li>Click it. It should open a blank site in the browser (maps to empty "/" route)</li>
+<li>Append "/docs" to the website URL and hit enter</li>
+<li>You should see the Swagger API documentation site as shown below:
+    <img alt="Swagger API" src="../../img/portal-containerapp-swagger.png"/></li>
+<li>Click "Try it Out" and update the <em>content</em> property value to a question.</li>
+<li>Verify that the <em>Responses</em> panel shows a relevant result (list of messages).</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Your azd app deployment has been validated!</p>
+</div>
+<h3 id="48-azure-ai-foundry-portal">4.8 Azure AI Foundry Portal<a class="headerlink" href="#48-azure-ai-foundry-portal" title="Permanent link">¶</a></h3>
+<p>The Azure Portal is used by IT pros and admins to <em>manage resources</em> for your deployment. As a developer, you will likely spend more time in the <em>Azure AI Foundry</em> portal which helps you <strong>manage your application state</strong> and <strong>debug operations</strong> when required.</p>
+<ol>
+<li>Visit the <a href="https://ai.azure.com">Azure AI Foundry Portal</a> and click <strong>View all projects</strong></li>
+<li>Use the <strong>Columns</strong> option to add "Resource Group" as a visible column to the table</li>
+<li>Look for the Azure AI project corresponding to the <code>rg-&lt;env&gt;</code> provisioned - and click.</li>
+<li>You should see the Project Overview with endpoints and keys information like this. <strong>Note the Project connection string</strong> - we'll reference it later.
+    <img alt="Project Overview" src="../../img/foundry-project-overview.png"/></li>
+<li>Click the <strong>Tracing</strong> tab in the sidebar. <em>Verify that you see the screen below</em>. This lets us know the Application Insights resource was successfully deployed for tracing use. To get trace data, we now need to <em>activate</em> tracers in our application code. We'll do that later.
+    <img alt="Project Tracing" src="../../img/foundry-project-tracing.png"/></li>
+<li>Click the <strong>Models + endpoints</strong> option on sidebar. You should see a list like this. <em>Verify that azd deployed 2 models: chat and embedding</em>
+<img alt="Project Models" src="../../img/foundry-models-endpoints.png"/></li>
+<li>Click the <em>Service endpoints</em> tab in this page. You should see the list of turnkey AI Services that you can now take advantage of using the default project connection string.
+    <img alt="Project Model Services" src="../../img/foundry-models-services.png"/></li>
+<li>Click the chat model (gpt-4o-mini) to view the model details page below. You should be able to vew rate limit details and get access to the endpoint and key values if needed. <strong>Note: If you need a higher rate limit</strong> - you can use the <code>Edit</code> button to see if your current subscription can support the increase, and update it right here.
+    <img alt="Project Model Details" src="../../img/foundry-model-details.png"/></li>
+<li>Click the "Metrics" tab. to see the usage metrics for the model as shown below.
+    <img alt="Project Model Metrics" src="../../img/foundry-model-metrics.png"/></li>
+</ol>
+<p>Note that the panel has an <strong>Open in Azure Monitor</strong> link at the top. Let's click that now and talk about App Insights and monitoring.</p>
+<h3 id="49-validate-monitoring-works">4.9 Validate Monitoring Works<a class="headerlink" href="#49-validate-monitoring-works" title="Permanent link">¶</a></h3>
+<ol>
+<li>This is what you see when you click that link above. You are redirected to the <em>Azure AI Project</em> resource in the Azure Portal, and into the <em>Metrics</em> tab under "Monitoring". Use this panel to explore various metrics on performance (e.g., number of requests, latency etc.) for the Azure OpenAI model.
+    <img alt="Metrics" src="../../img/portal-monitor-metrics.png"/></li>
+<li>You can also click into the <em>Insights (preview</em>)<em> sidebar option to get this view for Generative AI applications that gives you insights into _token usage</em>, <em>request rate</em> and <em>response latency</em>.
+    <img alt="Insights" src="../../img/azure-portal-insights.png"/></li>
+<li>Once you activate tracing in your application, you should also be able to visit the <em>Session Details</em> tab to see activity traces from that session.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../02/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1.2 AZD Templates">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1.2 AZD Templates
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../2-RAG-App-Customization/01/" class="md-footer__link md-footer__link--next" aria-label="Next: 2.1 Explore Template">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2.1 Explore Template
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - present Nitya Narasimhan <br/>🍪 | <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -11,9 +11,9 @@
 <link href="../01/" rel="prev"/>
 <link href="../03/" rel="next"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.5.49" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.5" name="generator"/>
 <title>1.3 Application Data - RAG Chat App on Azure AI Foundry</title>
-<link href="../../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -21,7 +21,7 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-1L8JBVW74T"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-1L8JBVW74T",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-1L8JBVW74T",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
 <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
-<script src="../../../js/unpkg.com/d3@7.js" type="text/javascript"></script><script src="../../../js/unpkg.com/markmap-lib@0.15.4.js" type="text/javascript"></script><script src="../../../js/unpkg.com/markmap-view@0.15.4.js" type="text/javascript"></script><style type="text/css">div.mkdocs-markmap {
+<script src="../../../js/unpkg.com/d3@7.js" type="text/javascript"></script><script src="../../../js/unpkg.com/markmap-lib@0.18.js" type="text/javascript"></script><script src="../../../js/unpkg.com/markmap-view@0.18.js" type="text/javascript"></script><style type="text/css">div.mkdocs-markmap {
     width: 100%;
     min-height: 1em;
     border: 1px solid grey;
@@ -115,7 +115,7 @@
 <div class="md-header__source">
 <a class="md-source" data-md-component="source" href="https://github.com/nitya/azure-ai-rag-workshop" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     nitya/azure-ai-rag-workshop
@@ -156,6 +156,16 @@
 
         </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../3-AZD-Template/1-Introduction/01/">
+          
+  
+    
+  
+  3 AZD Template
+
+        </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -176,7 +186,7 @@
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/nitya/azure-ai-rag-workshop" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     nitya/azure-ai-rag-workshop
@@ -188,6 +198,7 @@
 <a class="md-nav__link" href="../../..">
 <span class="md-ellipsis">
     Introduction
+    
   </span>
 </a>
 </li>
@@ -196,6 +207,7 @@
 <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
 <span class="md-ellipsis">
     1 Hybrid Workshop
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -210,6 +222,7 @@
 <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     1 Overview
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -223,6 +236,7 @@
 <a class="md-nav__link" href="../00/">
 <span class="md-ellipsis">
     1.1 Learning Objectives
+    
   </span>
 </a>
 </li>
@@ -230,6 +244,7 @@
 <a class="md-nav__link" href="../01/">
 <span class="md-ellipsis">
     1.2 Application Scenario
+    
   </span>
 </a>
 </li>
@@ -238,12 +253,14 @@
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     1.3 Application Data
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     1.3 Application Data
+    
   </span>
 </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
@@ -280,6 +297,7 @@
 <a class="md-nav__link" href="../03/">
 <span class="md-ellipsis">
     1.4 RAG Chat Tutorial
+    
   </span>
 </a>
 </li>
@@ -291,6 +309,7 @@
 <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
 <span class="md-ellipsis">
     2 Setup
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -304,6 +323,7 @@
 <a class="md-nav__link" href="../../2-Setup/01/">
 <span class="md-ellipsis">
     2.1 Create AI Project
+    
   </span>
 </a>
 </li>
@@ -311,6 +331,7 @@
 <a class="md-nav__link" href="../../2-Setup/02/">
 <span class="md-ellipsis">
     2.2 Deploy AI Models
+    
   </span>
 </a>
 </li>
@@ -318,6 +339,7 @@
 <a class="md-nav__link" href="../../2-Setup/03/">
 <span class="md-ellipsis">
     2.3 Add Azure AI Search
+    
   </span>
 </a>
 </li>
@@ -325,6 +347,7 @@
 <a class="md-nav__link" href="../../2-Setup/04/">
 <span class="md-ellipsis">
     2.4 Add App Insights
+    
   </span>
 </a>
 </li>
@@ -332,6 +355,7 @@
 <a class="md-nav__link" href="../../2-Setup/05/">
 <span class="md-ellipsis">
     2.5 Setup Local Environment
+    
   </span>
 </a>
 </li>
@@ -339,6 +363,7 @@
 <a class="md-nav__link" href="../../2-Setup/06/">
 <span class="md-ellipsis">
     2.6 Setup Project Structure
+    
   </span>
 </a>
 </li>
@@ -346,6 +371,7 @@
 <a class="md-nav__link" href="../../2-Setup/07/">
 <span class="md-ellipsis">
     2.7 Configure Env Variables
+    
   </span>
 </a>
 </li>
@@ -357,6 +383,7 @@
 <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
 <span class="md-ellipsis">
     3 Ideate
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -370,6 +397,7 @@
 <a class="md-nav__link" href="../../3-Ideate/01/">
 <span class="md-ellipsis">
     3.1 Add Application Data
+    
   </span>
 </a>
 </li>
@@ -377,6 +405,7 @@
 <a class="md-nav__link" href="../../3-Ideate/02/">
 <span class="md-ellipsis">
     3.2 Create Search Index
+    
   </span>
 </a>
 </li>
@@ -384,6 +413,7 @@
 <a class="md-nav__link" href="../../3-Ideate/03/">
 <span class="md-ellipsis">
     3.3 Retrieve Related Products
+    
   </span>
 </a>
 </li>
@@ -391,6 +421,7 @@
 <a class="md-nav__link" href="../../3-Ideate/04/">
 <span class="md-ellipsis">
     3.4 Understand Intent Mapping
+    
   </span>
 </a>
 </li>
@@ -398,6 +429,7 @@
 <a class="md-nav__link" href="../../3-Ideate/05/">
 <span class="md-ellipsis">
     3.5 Create Augmented Query
+    
   </span>
 </a>
 </li>
@@ -405,6 +437,7 @@
 <a class="md-nav__link" href="../../3-Ideate/06/">
 <span class="md-ellipsis">
     3.6 Design Grounded Prompt
+    
   </span>
 </a>
 </li>
@@ -412,6 +445,7 @@
 <a class="md-nav__link" href="../../3-Ideate/07/">
 <span class="md-ellipsis">
     3.7 Test with Observability
+    
   </span>
 </a>
 </li>
@@ -423,6 +457,7 @@
 <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
 <span class="md-ellipsis">
     4 Evaluate
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -436,6 +471,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/01/">
 <span class="md-ellipsis">
     4.1 Create Evaluation Dataset
+    
   </span>
 </a>
 </li>
@@ -443,6 +479,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/02/">
 <span class="md-ellipsis">
     4.2 Create Evaluation Script
+    
   </span>
 </a>
 </li>
@@ -450,6 +487,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/03/">
 <span class="md-ellipsis">
     4.3 Configure Evaluation Model
+    
   </span>
 </a>
 </li>
@@ -457,6 +495,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/04/">
 <span class="md-ellipsis">
     4.4 Run Evaluation Script
+    
   </span>
 </a>
 </li>
@@ -464,6 +503,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/05/">
 <span class="md-ellipsis">
     4.5 View Results Locally
+    
   </span>
 </a>
 </li>
@@ -471,6 +511,7 @@
 <a class="md-nav__link" href="../../4-Evaluate/06/">
 <span class="md-ellipsis">
     4.6 View Results In Portal
+    
   </span>
 </a>
 </li>
@@ -482,6 +523,7 @@
 <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
 <span class="md-ellipsis">
     5 Evolve
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -495,6 +537,7 @@
 <a class="md-nav__link" href="../../5-Evolve/01/">
 <span class="md-ellipsis">
     5.1 Recap: Build A Copilot
+    
   </span>
 </a>
 </li>
@@ -502,6 +545,7 @@
 <a class="md-nav__link" href="../../5-Evolve/02/">
 <span class="md-ellipsis">
     5.2 Refactor: Make it Better
+    
   </span>
 </a>
 </li>
@@ -514,6 +558,7 @@
 <a class="md-nav__link" href="../../6-Cleanup/">
 <span class="md-ellipsis">
     6 Cleanup
+    
   </span>
 </a>
 </div>
@@ -534,6 +579,7 @@
 <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
 <span class="md-ellipsis">
     2 Portal First
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -548,6 +594,7 @@
 <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
 <span class="md-ellipsis">
     1 Overview
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -561,6 +608,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/1-Overview/00/">
 <span class="md-ellipsis">
     1.1 Learning Roadmap
+    
   </span>
 </a>
 </li>
@@ -568,6 +616,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/1-Overview/01/">
 <span class="md-ellipsis">
     1.2 Application Lifecycle
+    
   </span>
 </a>
 </li>
@@ -575,6 +624,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/1-Overview/02/">
 <span class="md-ellipsis">
     1.3 Azure AI Foundry Portal
+    
   </span>
 </a>
 </li>
@@ -586,6 +636,7 @@
 <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
 <span class="md-ellipsis">
     2 Setup
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -600,6 +651,7 @@
 <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     01 Model Selection
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -613,6 +665,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/01-Model-Selection/01/">
 <span class="md-ellipsis">
     1. Learning Objectives
+    
   </span>
 </a>
 </li>
@@ -620,6 +673,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/01-Model-Selection/02/">
 <span class="md-ellipsis">
     2. Model Catalog
+    
   </span>
 </a>
 </li>
@@ -627,6 +681,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/01-Model-Selection/03/">
 <span class="md-ellipsis">
     3. Model Benchmarks
+    
   </span>
 </a>
 </li>
@@ -634,6 +689,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/01-Model-Selection/04/">
 <span class="md-ellipsis">
     4. Model Card
+    
   </span>
 </a>
 </li>
@@ -641,6 +697,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/01-Model-Selection/05/">
 <span class="md-ellipsis">
     5. Data, Privacy, &amp; Security
+    
   </span>
 </a>
 </li>
@@ -652,6 +709,7 @@
 <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
 <span class="md-ellipsis">
     02 Model Exploration
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -665,6 +723,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/02-Model-Exploration/01/">
 <span class="md-ellipsis">
     1. Learning Objectives
+    
   </span>
 </a>
 </li>
@@ -672,6 +731,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/02-Model-Exploration/02/">
 <span class="md-ellipsis">
     2. Create an AI project
+    
   </span>
 </a>
 </li>
@@ -679,6 +739,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/02-Model-Exploration/03/">
 <span class="md-ellipsis">
     3. Deploy &amp; Explore Model
+    
   </span>
 </a>
 </li>
@@ -686,6 +747,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/2-Setup/02-Model-Exploration/04/">
 <span class="md-ellipsis">
     4. Use Chat Playground
+    
   </span>
 </a>
 </li>
@@ -700,6 +762,7 @@
 <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
 <span class="md-ellipsis">
     3 Ideate
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -714,6 +777,7 @@
 <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
 <span class="md-ellipsis">
     01 Model Customization
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -727,6 +791,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/01-Model-Customization/01/">
 <span class="md-ellipsis">
     1. Learning Objectives
+    
   </span>
 </a>
 </li>
@@ -734,6 +799,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/01-Model-Customization/02/">
 <span class="md-ellipsis">
     2. Connect Azure AI Services
+    
   </span>
 </a>
 </li>
@@ -741,6 +807,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/01-Model-Customization/03/">
 <span class="md-ellipsis">
     3. Create &amp; Update RBAC
+    
   </span>
 </a>
 </li>
@@ -748,6 +815,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/01-Model-Customization/04/">
 <span class="md-ellipsis">
     4. Add Grounding Data
+    
   </span>
 </a>
 </li>
@@ -755,6 +823,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/01-Model-Customization/05/">
 <span class="md-ellipsis">
     5. Test Grounded Chat
+    
   </span>
 </a>
 </li>
@@ -766,6 +835,7 @@
 <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
 <span class="md-ellipsis">
     02 Model Integration
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -779,6 +849,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/02-Model-Integration/01/">
 <span class="md-ellipsis">
     1. Learning Objectives
+    
   </span>
 </a>
 </li>
@@ -786,6 +857,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/02-Model-Integration/02/">
 <span class="md-ellipsis">
     1. Deploy RAG App (Chat AI)
+    
   </span>
 </a>
 </li>
@@ -793,6 +865,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/02-Model-Integration/03/">
 <span class="md-ellipsis">
     3. Deploy Web App (Chat UI)
+    
   </span>
 </a>
 </li>
@@ -800,6 +873,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/3-Ideate/02-Model-Integration/04/">
 <span class="md-ellipsis">
     4. Chat With Your Data!
+    
   </span>
 </a>
 </li>
@@ -814,6 +888,7 @@
 <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
 <span class="md-ellipsis">
     4 Evaluate
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -827,6 +902,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/4-Evaluate/01/">
 <span class="md-ellipsis">
     1. 🚧 | In Development
+    
   </span>
 </a>
 </li>
@@ -838,6 +914,7 @@
 <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
 <span class="md-ellipsis">
     5 Deploy
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -851,6 +928,7 @@
 <a class="md-nav__link" href="../../../2-Portal-First/5-Deploy/01/">
 <span class="md-ellipsis">
     1. 🚧 | In Development
+    
   </span>
 </a>
 </li>
@@ -862,6 +940,7 @@
 <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
 <span class="md-ellipsis">
     6 Cleanup
+    
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -875,6 +954,175 @@
 <a class="md-nav__link" href="../../../2-Portal-First/6-Cleanup/01/">
 <span class="md-ellipsis">
     1. 🚧 | In Development
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    3 AZD Template
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            3 AZD Template
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+<span class="md-ellipsis">
+    1 Introduction
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_1">
+<span class="md-nav__icon md-icon"></span>
+            1 Introduction
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/1-Introduction/01/">
+<span class="md-ellipsis">
+    1.1 Azure Developer CLI
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/1-Introduction/02/">
+<span class="md-ellipsis">
+    1.2 AZD Templates
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/1-Introduction/03/">
+<span class="md-ellipsis">
+    1.3 Azure AI Template
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    2 RAG App Customization
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+            2 RAG App Customization
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/01/">
+<span class="md-ellipsis">
+    2.1 Explore Template
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/02/">
+<span class="md-ellipsis">
+    2.2 Add App Source
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/03/">
+<span class="md-ellipsis">
+    2.3 Create IaC Files
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/04/">
+<span class="md-ellipsis">
+    2.4 Update azure.yaml
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/05/">
+<span class="md-ellipsis">
+    2.5 Provision &amp; Deploy
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/06/">
+<span class="md-ellipsis">
+    2.6 Add CI/CD Pipeline
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/2-RAG-App-Customization/07/">
+<span class="md-ellipsis">
+    2.7 Delete &amp; Cleanup
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    3 Troubleshooting
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+            3 Troubleshooting
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/3-Troubleshooting/01/">
+<span class="md-ellipsis">
+    3.1 Template Creation
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../3-AZD-Template/3-Troubleshooting/02/">
+<span class="md-ellipsis">
+    3.2 Template Usage
+    
   </span>
 </a>
 </li>
@@ -1037,223 +1285,7 @@ Let's understand the shape of the data available to us - and think proactively a
 <p><strong>The product info has been rendered as a Markmap for visual clarity</strong>. Simply zoom in/out or pan in/out to explore the content. You can click on any node (circle) to expand/collapse its sub-tree. You may need to refresh or reload page to re-render the tree.</p>
 <details class="quote">
 <summary>SAMPLE RECORD (Markdown) - <em>click to expand</em></summary>
-<div class="language-markmap mkdocs-markmap"><markmap-data hidden="true">
-# Information about product item_number: 1
-TrailMaster X4 Tent, price $250,
-
-## Brand
-OutdoorLiving
-
-## Category
-Tents
-
-## Features
-- Polyester material for durability
-- Spacious interior to accommodate multiple people
-- Easy setup with included instructions
-- Water-resistant construction to withstand light rain
-- Mesh panels for ventilation and insect protection
-- Rainfly included for added weather protection
-- Multiple doors for convenient entry and exit
-- Interior pockets for organizing small items
-- Reflective guy lines for improved visibility at night
-- Freestanding design for easy setup and relocation
-- Carry bag included for convenient storage and transportation
-
-## Technical Specs
-**Best Use**: Camping  
-**Capacity**: 4-person  
-**Season Rating**: 3-season  
-**Setup**: Freestanding  
-**Material**: Polyester  
-**Waterproof**: Yes  
-**Floor Area**: 80 square feet  
-**Peak Height**: 6 feet  
-**Number of Doors**: 2  
-**Color**: Green  
-**Rainfly**: Included  
-**Rainfly Waterproof Rating**: 2000mm  
-**Tent Poles**: Aluminum  
-**Pole Diameter**: 9mm  
-**Ventilation**: Mesh panels and adjustable vents  
-**Interior Pockets**: Yes (4 pockets)  
-**Gear Loft**: Included  
-**Footprint**: Sold separately  
-**Guy Lines**: Reflective  
-**Stakes**: Aluminum  
-**Carry Bag**: Included  
-**Dimensions**: 10ft x 8ft x 6ft (length x width x peak height)  
-**Packed Size**: 24 inches x 8 inches  
-**Weight**: 12 lbs  
-
-## User Guide
-
-### Introduction
-
-Thank you for choosing the TrailMaster X4 Tent. This user guide provides instructions on how to set up, use, and maintain your tent effectively. Please read this guide thoroughly before using the tent.
-
-### Package Contents
-
-Ensure that the package includes the following components:
-
-- TrailMaster X4 Tent body
-- Tent poles
-- Rainfly (if applicable)
-- Stakes and guy lines
-- Carry bag
-- User Guide
-
-If any components are missing or damaged, please contact our customer support immediately.
-
-### Tent Setup
-
-#### Step 1: Selecting a Suitable Location
-
-- Find a level and clear area for pitching the tent.
-- Remove any sharp objects or debris that could damage the tent floor.
-
-#### Step 2: Unpacking and Organizing Components
-
-- Lay out all the tent components on the ground.
-- Familiarize yourself with each part, including the tent body, poles, rainfly, stakes, and guy lines.
-
-#### Step 3: Assembling the Tent Poles
-
-- Connect the tent poles according to their designated color codes or numbering.
-- Slide the connected poles through the pole sleeves or attach them to the tent body clips.
-
-#### Step 4: Setting up the Tent Body
-
-- Begin at one end and raise the tent body by pushing up the poles.
-- Ensure that the tent body is evenly stretched and centered.
-- Secure the tent body to the ground using stakes and guy lines as needed.
-
-#### Step 5: Attaching the Rainfly (if applicable)
-
-- If your tent includes a rainfly, spread it over the tent body.
-- Attach the rainfly to the tent corners and secure it with the provided buckles or clips.
-- Adjust the tension of the rainfly to ensure proper airflow and weather protection.
-
-#### Step 6: Securing the Tent
-
-- Stake down the tent corners and guy out the guy lines for additional stability.
-- Adjust the tension of the guy lines to provide optimal stability and wind resistance.
-
-### Tent Takedown and Storage
-
-#### Step 1: Removing Stakes and Guy Lines
-
-- Remove all stakes from the ground.
-- Untie or disconnect the guy lines from the tent and store them separately.
-
-#### Step 2: Taking Down the Tent Body
-
-- Start by collapsing the tent poles carefully.
-- Remove the poles from the pole sleeves or clips.
-- Collapse the tent body and fold it neatly.
-
-#### Step 3: Disassembling the Tent Poles
-
-- Disconnect and separate the individual pole sections.
-- Store the poles in their designated bag or sleeve.
-
-#### Step 4: Packing the Tent
-
-- Fold the tent body tightly and place it in the carry bag.
-- Ensure that the rainfly and any other components are also packed securely.
-
-### Tent Care and Maintenance
-
-- Clean the tent regularly with mild soap and water.
-- Avoid using harsh chemicals or abrasive cleaners.
-- Allow the tent to dry completely before storing it.
-- Store the tent in a cool, dry place away from direct sunlight.
-
-## Cautions
-1. **Avoid Uneven or Rocky Surfaces**: Do not place the tent on uneven or rocky surfaces.
-2. **Stay Clear of Hazardous Areas**: Avoid setting up the tent near hazardous areas.
-3. **No Open Flames or Heat Sources**: Do not use open flames, candles, or any other flammable heat sources near the tent.
-4. **Avoid Overloading**: Do not exceed the maximum weight capacity or overload the tent with excessive gear or equipment.
-5. **Don't Leave Unattended**: Do not leave the tent unattended while open or occupied.
-6. **Avoid Sharp Objects**: Keep sharp objects away from the tent to prevent damage to the fabric or punctures.
-7. **Avoid Using Harsh Chemicals**: Do not use harsh chemicals or abrasive cleaners on the tent, as they may damage the material.
-8. **Don't Store Wet**: Do not store the tent when it is wet or damp, as it can lead to mold, mildew, or fabric deterioration.
-9. **Avoid Direct Sunlight**: Avoid prolonged exposure of the tent to direct sunlight, as it can cause fading or weakening of the fabric.
-10. **Don't Neglect Maintenance**: Regularly clean and maintain the tent according to the provided instructions to ensure its longevity and performance.
-
-## Warranty Information
-Thank you for purchasing the TrailMaster X4 Tent. We are confident in the quality and durability of our product. This warranty provides coverage for any manufacturing defects or issues that may arise during normal use of the tent. Please read the terms and conditions of the warranty below:
-
-1. **Warranty Coverage**: The TrailMaster X4 Tent is covered by a **2-year limited warranty** from the date of purchase. This warranty covers manufacturing defects in materials and workmanship.
-
-2. **What is Covered**:
-- Seam or fabric tears that occur under normal use and are not a result of misuse or abuse.
-- Issues with the tent poles, zippers, buckles, or other hardware components that affect the functionality of the tent.
-- Problems with the rainfly or other included accessories that impact the performance of the tent.
-
-3. **What is Not Covered**:
-- Damage caused by misuse, abuse, or improper care of the tent.
-- Normal wear and tear or cosmetic damage that does not affect the functionality of the tent.
-- Damage caused by extreme weather conditions, natural disasters, or acts of nature.
-- Any modifications or alterations made to the tent by the user.
-
-4. **Claim Process**:
-- In the event of a warranty claim, please contact our customer support (contact details provided in the user guide) to initiate the process.
-- Provide proof of purchase, including the date and place of purchase, along with a detailed description and supporting evidence of the issue.
-
-5. **Resolution Options**:
-- Upon receipt of the warranty claim, our customer support team will assess the issue and determine the appropriate resolution.
-- Options may include repair, replacement of the defective parts, or, if necessary, replacement of the entire tent.
-
-6. **Limitations and Exclusions**:
-- Our warranty is non-transferable and applies only to the original purchaser of the TrailMaster X4 Tent.
-- The warranty does not cover any incidental or consequential damages resulting from the use or inability to use the tent.
-- Any unauthorized repairs or alterations void the warranty.
-
-### Contact Information
-
-If you have any questions or need further assistance, please contact our customer support:
-
-- Customer Support Phone: +1-800-123-4567
-- Customer Support Email: support@example.com
-
-## Return Policy
-- **If Membership status "None        ":**  Returns are accepted within 30 days of purchase, provided the tent is unused, undamaged and in its original packaging. Customer is responsible for the cost of return shipping. Once the returned item is received, a refund will be issued for the cost of the item minus a 10% restocking fee. If the item was damaged during shipping or if there is a defect, the customer should contact customer service within 7 days of receiving the item.
-- **If Membership status "Gold":**  Returns are accepted within 60 days of purchase, provided the tent is unused, undamaged and in its original packaging. Free return shipping is provided. Once the returned item is received, a full refund will be issued. If the item was damaged during shipping or if there is a defect, the customer should contact customer service within 7 days of receiving the item.
-- **If Membership status "Platinum":**  Returns are accepted within 90 days of purchase, provided the tent is unused, undamaged and in its original packaging. Free return shipping is provided, and a full refund will be issued. If the item was damaged during shipping or if there is a defect, the customer should contact customer service within 7 days of receiving the item.
-
-## Reviews
-1) **Rating:** 5
-**Review:** I am extremely happy with my TrailMaster X4 Tent! It's spacious, easy to set up, and kept me dry during a storm. The UV protection is a great addition too. Highly recommend it to anyone who loves camping!
-
-2) **Rating:** 3
-**Review:** I bought the TrailMaster X4 Tent, and while it's waterproof and has a spacious interior, I found it a bit difficult to set up. It's a decent tent, but I wish it were easier to assemble.
-
-3) **Rating:** 5
-**Review:** The TrailMaster X4 Tent is a fantastic investment for any serious camper. The easy setup and spacious interior make it perfect for extended trips, and the waterproof design kept us dry in heavy rain.
-
-4) **Rating:** 4
-**Review:** I like the TrailMaster X4 Tent, but I wish it came in more colors. It's comfortable and has many useful features, but the green color just isn't my favorite. Overall, it's a good tent.
-
-5) **Rating:** 5
-**Review:** This tent is perfect for my family camping trips. The spacious interior and convenient storage pocket make it easy to stay organized. It's also super easy to set up, making it a great addition to our gear.
-
-## FAQ
-1) Can the TrailMaster X4 Tent be used in winter conditions?
-The TrailMaster X4 Tent is designed for 3-season use and may not be suitable for extreme winter conditions with heavy snow and freezing temperatures.
-
-2) How many people can comfortably sleep in the TrailMaster X4 Tent?
-The TrailMaster X4 Tent can comfortably accommodate up to 4 people with room for their gear.
-
-3) Is there a warranty on the TrailMaster X4 Tent?
-Yes, the TrailMaster X4 Tent comes with a 2-year limited warranty against manufacturing defects.
-
-4) Are there any additional accessories included with the TrailMaster X4 Tent?
-The TrailMaster X4 Tent includes a rainfly, tent stakes, guy lines, and a carry bag for easy transport.
-
-5) Can the TrailMaster X4 Tent be easily carried during hikes?
-Yes, the TrailMaster X4 Tent weighs just 12lbs, and when packed in its carry bag, it can be comfortably carried during hikes.
-</markmap-data></div>
+<div class="language-markmap mkdocs-markmap"><markmap-data encoding="base64" hidden="true">IyBJbmZvcm1hdGlvbiBhYm91dCBwcm9kdWN0IGl0ZW1fbnVtYmVyOiAxClRyYWlsTWFzdGVyIFg0IFRlbnQsIHByaWNlICQyNTAsCgojIyBCcmFuZApPdXRkb29yTGl2aW5nCgojIyBDYXRlZ29yeQpUZW50cwoKIyMgRmVhdHVyZXMKLSBQb2x5ZXN0ZXIgbWF0ZXJpYWwgZm9yIGR1cmFiaWxpdHkKLSBTcGFjaW91cyBpbnRlcmlvciB0byBhY2NvbW1vZGF0ZSBtdWx0aXBsZSBwZW9wbGUKLSBFYXN5IHNldHVwIHdpdGggaW5jbHVkZWQgaW5zdHJ1Y3Rpb25zCi0gV2F0ZXItcmVzaXN0YW50IGNvbnN0cnVjdGlvbiB0byB3aXRoc3RhbmQgbGlnaHQgcmFpbgotIE1lc2ggcGFuZWxzIGZvciB2ZW50aWxhdGlvbiBhbmQgaW5zZWN0IHByb3RlY3Rpb24KLSBSYWluZmx5IGluY2x1ZGVkIGZvciBhZGRlZCB3ZWF0aGVyIHByb3RlY3Rpb24KLSBNdWx0aXBsZSBkb29ycyBmb3IgY29udmVuaWVudCBlbnRyeSBhbmQgZXhpdAotIEludGVyaW9yIHBvY2tldHMgZm9yIG9yZ2FuaXppbmcgc21hbGwgaXRlbXMKLSBSZWZsZWN0aXZlIGd1eSBsaW5lcyBmb3IgaW1wcm92ZWQgdmlzaWJpbGl0eSBhdCBuaWdodAotIEZyZWVzdGFuZGluZyBkZXNpZ24gZm9yIGVhc3kgc2V0dXAgYW5kIHJlbG9jYXRpb24KLSBDYXJyeSBiYWcgaW5jbHVkZWQgZm9yIGNvbnZlbmllbnQgc3RvcmFnZSBhbmQgdHJhbnNwb3J0YXRpb24KCiMjIFRlY2huaWNhbCBTcGVjcwoqKkJlc3QgVXNlKio6IENhbXBpbmcgIAoqKkNhcGFjaXR5Kio6IDQtcGVyc29uICAKKipTZWFzb24gUmF0aW5nKio6IDMtc2Vhc29uICAKKipTZXR1cCoqOiBGcmVlc3RhbmRpbmcgIAoqKk1hdGVyaWFsKio6IFBvbHllc3RlciAgCioqV2F0ZXJwcm9vZioqOiBZZXMgIAoqKkZsb29yIEFyZWEqKjogODAgc3F1YXJlIGZlZXQgIAoqKlBlYWsgSGVpZ2h0Kio6IDYgZmVldCAgCioqTnVtYmVyIG9mIERvb3JzKio6IDIgIAoqKkNvbG9yKio6IEdyZWVuICAKKipSYWluZmx5Kio6IEluY2x1ZGVkICAKKipSYWluZmx5IFdhdGVycHJvb2YgUmF0aW5nKio6IDIwMDBtbSAgCioqVGVudCBQb2xlcyoqOiBBbHVtaW51bSAgCioqUG9sZSBEaWFtZXRlcioqOiA5bW0gIAoqKlZlbnRpbGF0aW9uKio6IE1lc2ggcGFuZWxzIGFuZCBhZGp1c3RhYmxlIHZlbnRzICAKKipJbnRlcmlvciBQb2NrZXRzKio6IFllcyAoNCBwb2NrZXRzKSAgCioqR2VhciBMb2Z0Kio6IEluY2x1ZGVkICAKKipGb290cHJpbnQqKjogU29sZCBzZXBhcmF0ZWx5ICAKKipHdXkgTGluZXMqKjogUmVmbGVjdGl2ZSAgCioqU3Rha2VzKio6IEFsdW1pbnVtICAKKipDYXJyeSBCYWcqKjogSW5jbHVkZWQgIAoqKkRpbWVuc2lvbnMqKjogMTBmdCB4IDhmdCB4IDZmdCAobGVuZ3RoIHggd2lkdGggeCBwZWFrIGhlaWdodCkgIAoqKlBhY2tlZCBTaXplKio6IDI0IGluY2hlcyB4IDggaW5jaGVzICAKKipXZWlnaHQqKjogMTIgbGJzICAKCiMjIFVzZXIgR3VpZGUKCiMjIyBJbnRyb2R1Y3Rpb24KClRoYW5rIHlvdSBmb3IgY2hvb3NpbmcgdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQuIFRoaXMgdXNlciBndWlkZSBwcm92aWRlcyBpbnN0cnVjdGlvbnMgb24gaG93IHRvIHNldCB1cCwgdXNlLCBhbmQgbWFpbnRhaW4geW91ciB0ZW50IGVmZmVjdGl2ZWx5LiBQbGVhc2UgcmVhZCB0aGlzIGd1aWRlIHRob3JvdWdobHkgYmVmb3JlIHVzaW5nIHRoZSB0ZW50LgoKIyMjIFBhY2thZ2UgQ29udGVudHMKCkVuc3VyZSB0aGF0IHRoZSBwYWNrYWdlIGluY2x1ZGVzIHRoZSBmb2xsb3dpbmcgY29tcG9uZW50czoKCi0gVHJhaWxNYXN0ZXIgWDQgVGVudCBib2R5Ci0gVGVudCBwb2xlcwotIFJhaW5mbHkgKGlmIGFwcGxpY2FibGUpCi0gU3Rha2VzIGFuZCBndXkgbGluZXMKLSBDYXJyeSBiYWcKLSBVc2VyIEd1aWRlCgpJZiBhbnkgY29tcG9uZW50cyBhcmUgbWlzc2luZyBvciBkYW1hZ2VkLCBwbGVhc2UgY29udGFjdCBvdXIgY3VzdG9tZXIgc3VwcG9ydCBpbW1lZGlhdGVseS4KCiMjIyBUZW50IFNldHVwCgojIyMjIFN0ZXAgMTogU2VsZWN0aW5nIGEgU3VpdGFibGUgTG9jYXRpb24KCi0gRmluZCBhIGxldmVsIGFuZCBjbGVhciBhcmVhIGZvciBwaXRjaGluZyB0aGUgdGVudC4KLSBSZW1vdmUgYW55IHNoYXJwIG9iamVjdHMgb3IgZGVicmlzIHRoYXQgY291bGQgZGFtYWdlIHRoZSB0ZW50IGZsb29yLgoKIyMjIyBTdGVwIDI6IFVucGFja2luZyBhbmQgT3JnYW5pemluZyBDb21wb25lbnRzCgotIExheSBvdXQgYWxsIHRoZSB0ZW50IGNvbXBvbmVudHMgb24gdGhlIGdyb3VuZC4KLSBGYW1pbGlhcml6ZSB5b3Vyc2VsZiB3aXRoIGVhY2ggcGFydCwgaW5jbHVkaW5nIHRoZSB0ZW50IGJvZHksIHBvbGVzLCByYWluZmx5LCBzdGFrZXMsIGFuZCBndXkgbGluZXMuCgojIyMjIFN0ZXAgMzogQXNzZW1ibGluZyB0aGUgVGVudCBQb2xlcwoKLSBDb25uZWN0IHRoZSB0ZW50IHBvbGVzIGFjY29yZGluZyB0byB0aGVpciBkZXNpZ25hdGVkIGNvbG9yIGNvZGVzIG9yIG51bWJlcmluZy4KLSBTbGlkZSB0aGUgY29ubmVjdGVkIHBvbGVzIHRocm91Z2ggdGhlIHBvbGUgc2xlZXZlcyBvciBhdHRhY2ggdGhlbSB0byB0aGUgdGVudCBib2R5IGNsaXBzLgoKIyMjIyBTdGVwIDQ6IFNldHRpbmcgdXAgdGhlIFRlbnQgQm9keQoKLSBCZWdpbiBhdCBvbmUgZW5kIGFuZCByYWlzZSB0aGUgdGVudCBib2R5IGJ5IHB1c2hpbmcgdXAgdGhlIHBvbGVzLgotIEVuc3VyZSB0aGF0IHRoZSB0ZW50IGJvZHkgaXMgZXZlbmx5IHN0cmV0Y2hlZCBhbmQgY2VudGVyZWQuCi0gU2VjdXJlIHRoZSB0ZW50IGJvZHkgdG8gdGhlIGdyb3VuZCB1c2luZyBzdGFrZXMgYW5kIGd1eSBsaW5lcyBhcyBuZWVkZWQuCgojIyMjIFN0ZXAgNTogQXR0YWNoaW5nIHRoZSBSYWluZmx5IChpZiBhcHBsaWNhYmxlKQoKLSBJZiB5b3VyIHRlbnQgaW5jbHVkZXMgYSByYWluZmx5LCBzcHJlYWQgaXQgb3ZlciB0aGUgdGVudCBib2R5LgotIEF0dGFjaCB0aGUgcmFpbmZseSB0byB0aGUgdGVudCBjb3JuZXJzIGFuZCBzZWN1cmUgaXQgd2l0aCB0aGUgcHJvdmlkZWQgYnVja2xlcyBvciBjbGlwcy4KLSBBZGp1c3QgdGhlIHRlbnNpb24gb2YgdGhlIHJhaW5mbHkgdG8gZW5zdXJlIHByb3BlciBhaXJmbG93IGFuZCB3ZWF0aGVyIHByb3RlY3Rpb24uCgojIyMjIFN0ZXAgNjogU2VjdXJpbmcgdGhlIFRlbnQKCi0gU3Rha2UgZG93biB0aGUgdGVudCBjb3JuZXJzIGFuZCBndXkgb3V0IHRoZSBndXkgbGluZXMgZm9yIGFkZGl0aW9uYWwgc3RhYmlsaXR5LgotIEFkanVzdCB0aGUgdGVuc2lvbiBvZiB0aGUgZ3V5IGxpbmVzIHRvIHByb3ZpZGUgb3B0aW1hbCBzdGFiaWxpdHkgYW5kIHdpbmQgcmVzaXN0YW5jZS4KCiMjIyBUZW50IFRha2Vkb3duIGFuZCBTdG9yYWdlCgojIyMjIFN0ZXAgMTogUmVtb3ZpbmcgU3Rha2VzIGFuZCBHdXkgTGluZXMKCi0gUmVtb3ZlIGFsbCBzdGFrZXMgZnJvbSB0aGUgZ3JvdW5kLgotIFVudGllIG9yIGRpc2Nvbm5lY3QgdGhlIGd1eSBsaW5lcyBmcm9tIHRoZSB0ZW50IGFuZCBzdG9yZSB0aGVtIHNlcGFyYXRlbHkuCgojIyMjIFN0ZXAgMjogVGFraW5nIERvd24gdGhlIFRlbnQgQm9keQoKLSBTdGFydCBieSBjb2xsYXBzaW5nIHRoZSB0ZW50IHBvbGVzIGNhcmVmdWxseS4KLSBSZW1vdmUgdGhlIHBvbGVzIGZyb20gdGhlIHBvbGUgc2xlZXZlcyBvciBjbGlwcy4KLSBDb2xsYXBzZSB0aGUgdGVudCBib2R5IGFuZCBmb2xkIGl0IG5lYXRseS4KCiMjIyMgU3RlcCAzOiBEaXNhc3NlbWJsaW5nIHRoZSBUZW50IFBvbGVzCgotIERpc2Nvbm5lY3QgYW5kIHNlcGFyYXRlIHRoZSBpbmRpdmlkdWFsIHBvbGUgc2VjdGlvbnMuCi0gU3RvcmUgdGhlIHBvbGVzIGluIHRoZWlyIGRlc2lnbmF0ZWQgYmFnIG9yIHNsZWV2ZS4KCiMjIyMgU3RlcCA0OiBQYWNraW5nIHRoZSBUZW50CgotIEZvbGQgdGhlIHRlbnQgYm9keSB0aWdodGx5IGFuZCBwbGFjZSBpdCBpbiB0aGUgY2FycnkgYmFnLgotIEVuc3VyZSB0aGF0IHRoZSByYWluZmx5IGFuZCBhbnkgb3RoZXIgY29tcG9uZW50cyBhcmUgYWxzbyBwYWNrZWQgc2VjdXJlbHkuCgojIyMgVGVudCBDYXJlIGFuZCBNYWludGVuYW5jZQoKLSBDbGVhbiB0aGUgdGVudCByZWd1bGFybHkgd2l0aCBtaWxkIHNvYXAgYW5kIHdhdGVyLgotIEF2b2lkIHVzaW5nIGhhcnNoIGNoZW1pY2FscyBvciBhYnJhc2l2ZSBjbGVhbmVycy4KLSBBbGxvdyB0aGUgdGVudCB0byBkcnkgY29tcGxldGVseSBiZWZvcmUgc3RvcmluZyBpdC4KLSBTdG9yZSB0aGUgdGVudCBpbiBhIGNvb2wsIGRyeSBwbGFjZSBhd2F5IGZyb20gZGlyZWN0IHN1bmxpZ2h0LgoKIyMgQ2F1dGlvbnMKMS4gKipBdm9pZCBVbmV2ZW4gb3IgUm9ja3kgU3VyZmFjZXMqKjogRG8gbm90IHBsYWNlIHRoZSB0ZW50IG9uIHVuZXZlbiBvciByb2NreSBzdXJmYWNlcy4KMi4gKipTdGF5IENsZWFyIG9mIEhhemFyZG91cyBBcmVhcyoqOiBBdm9pZCBzZXR0aW5nIHVwIHRoZSB0ZW50IG5lYXIgaGF6YXJkb3VzIGFyZWFzLgozLiAqKk5vIE9wZW4gRmxhbWVzIG9yIEhlYXQgU291cmNlcyoqOiBEbyBub3QgdXNlIG9wZW4gZmxhbWVzLCBjYW5kbGVzLCBvciBhbnkgb3RoZXIgZmxhbW1hYmxlIGhlYXQgc291cmNlcyBuZWFyIHRoZSB0ZW50Lgo0LiAqKkF2b2lkIE92ZXJsb2FkaW5nKio6IERvIG5vdCBleGNlZWQgdGhlIG1heGltdW0gd2VpZ2h0IGNhcGFjaXR5IG9yIG92ZXJsb2FkIHRoZSB0ZW50IHdpdGggZXhjZXNzaXZlIGdlYXIgb3IgZXF1aXBtZW50Lgo1LiAqKkRvbid0IExlYXZlIFVuYXR0ZW5kZWQqKjogRG8gbm90IGxlYXZlIHRoZSB0ZW50IHVuYXR0ZW5kZWQgd2hpbGUgb3BlbiBvciBvY2N1cGllZC4KNi4gKipBdm9pZCBTaGFycCBPYmplY3RzKio6IEtlZXAgc2hhcnAgb2JqZWN0cyBhd2F5IGZyb20gdGhlIHRlbnQgdG8gcHJldmVudCBkYW1hZ2UgdG8gdGhlIGZhYnJpYyBvciBwdW5jdHVyZXMuCjcuICoqQXZvaWQgVXNpbmcgSGFyc2ggQ2hlbWljYWxzKio6IERvIG5vdCB1c2UgaGFyc2ggY2hlbWljYWxzIG9yIGFicmFzaXZlIGNsZWFuZXJzIG9uIHRoZSB0ZW50LCBhcyB0aGV5IG1heSBkYW1hZ2UgdGhlIG1hdGVyaWFsLgo4LiAqKkRvbid0IFN0b3JlIFdldCoqOiBEbyBub3Qgc3RvcmUgdGhlIHRlbnQgd2hlbiBpdCBpcyB3ZXQgb3IgZGFtcCwgYXMgaXQgY2FuIGxlYWQgdG8gbW9sZCwgbWlsZGV3LCBvciBmYWJyaWMgZGV0ZXJpb3JhdGlvbi4KOS4gKipBdm9pZCBEaXJlY3QgU3VubGlnaHQqKjogQXZvaWQgcHJvbG9uZ2VkIGV4cG9zdXJlIG9mIHRoZSB0ZW50IHRvIGRpcmVjdCBzdW5saWdodCwgYXMgaXQgY2FuIGNhdXNlIGZhZGluZyBvciB3ZWFrZW5pbmcgb2YgdGhlIGZhYnJpYy4KMTAuICoqRG9uJ3QgTmVnbGVjdCBNYWludGVuYW5jZSoqOiBSZWd1bGFybHkgY2xlYW4gYW5kIG1haW50YWluIHRoZSB0ZW50IGFjY29yZGluZyB0byB0aGUgcHJvdmlkZWQgaW5zdHJ1Y3Rpb25zIHRvIGVuc3VyZSBpdHMgbG9uZ2V2aXR5IGFuZCBwZXJmb3JtYW5jZS4KCiMjIFdhcnJhbnR5IEluZm9ybWF0aW9uClRoYW5rIHlvdSBmb3IgcHVyY2hhc2luZyB0aGUgVHJhaWxNYXN0ZXIgWDQgVGVudC4gV2UgYXJlIGNvbmZpZGVudCBpbiB0aGUgcXVhbGl0eSBhbmQgZHVyYWJpbGl0eSBvZiBvdXIgcHJvZHVjdC4gVGhpcyB3YXJyYW50eSBwcm92aWRlcyBjb3ZlcmFnZSBmb3IgYW55IG1hbnVmYWN0dXJpbmcgZGVmZWN0cyBvciBpc3N1ZXMgdGhhdCBtYXkgYXJpc2UgZHVyaW5nIG5vcm1hbCB1c2Ugb2YgdGhlIHRlbnQuIFBsZWFzZSByZWFkIHRoZSB0ZXJtcyBhbmQgY29uZGl0aW9ucyBvZiB0aGUgd2FycmFudHkgYmVsb3c6CgoxLiAqKldhcnJhbnR5IENvdmVyYWdlKio6IFRoZSBUcmFpbE1hc3RlciBYNCBUZW50IGlzIGNvdmVyZWQgYnkgYSAqKjIteWVhciBsaW1pdGVkIHdhcnJhbnR5KiogZnJvbSB0aGUgZGF0ZSBvZiBwdXJjaGFzZS4gVGhpcyB3YXJyYW50eSBjb3ZlcnMgbWFudWZhY3R1cmluZyBkZWZlY3RzIGluIG1hdGVyaWFscyBhbmQgd29ya21hbnNoaXAuCgoyLiAqKldoYXQgaXMgQ292ZXJlZCoqOgotIFNlYW0gb3IgZmFicmljIHRlYXJzIHRoYXQgb2NjdXIgdW5kZXIgbm9ybWFsIHVzZSBhbmQgYXJlIG5vdCBhIHJlc3VsdCBvZiBtaXN1c2Ugb3IgYWJ1c2UuCi0gSXNzdWVzIHdpdGggdGhlIHRlbnQgcG9sZXMsIHppcHBlcnMsIGJ1Y2tsZXMsIG9yIG90aGVyIGhhcmR3YXJlIGNvbXBvbmVudHMgdGhhdCBhZmZlY3QgdGhlIGZ1bmN0aW9uYWxpdHkgb2YgdGhlIHRlbnQuCi0gUHJvYmxlbXMgd2l0aCB0aGUgcmFpbmZseSBvciBvdGhlciBpbmNsdWRlZCBhY2Nlc3NvcmllcyB0aGF0IGltcGFjdCB0aGUgcGVyZm9ybWFuY2Ugb2YgdGhlIHRlbnQuCgozLiAqKldoYXQgaXMgTm90IENvdmVyZWQqKjoKLSBEYW1hZ2UgY2F1c2VkIGJ5IG1pc3VzZSwgYWJ1c2UsIG9yIGltcHJvcGVyIGNhcmUgb2YgdGhlIHRlbnQuCi0gTm9ybWFsIHdlYXIgYW5kIHRlYXIgb3IgY29zbWV0aWMgZGFtYWdlIHRoYXQgZG9lcyBub3QgYWZmZWN0IHRoZSBmdW5jdGlvbmFsaXR5IG9mIHRoZSB0ZW50LgotIERhbWFnZSBjYXVzZWQgYnkgZXh0cmVtZSB3ZWF0aGVyIGNvbmRpdGlvbnMsIG5hdHVyYWwgZGlzYXN0ZXJzLCBvciBhY3RzIG9mIG5hdHVyZS4KLSBBbnkgbW9kaWZpY2F0aW9ucyBvciBhbHRlcmF0aW9ucyBtYWRlIHRvIHRoZSB0ZW50IGJ5IHRoZSB1c2VyLgoKNC4gKipDbGFpbSBQcm9jZXNzKio6Ci0gSW4gdGhlIGV2ZW50IG9mIGEgd2FycmFudHkgY2xhaW0sIHBsZWFzZSBjb250YWN0IG91ciBjdXN0b21lciBzdXBwb3J0IChjb250YWN0IGRldGFpbHMgcHJvdmlkZWQgaW4gdGhlIHVzZXIgZ3VpZGUpIHRvIGluaXRpYXRlIHRoZSBwcm9jZXNzLgotIFByb3ZpZGUgcHJvb2Ygb2YgcHVyY2hhc2UsIGluY2x1ZGluZyB0aGUgZGF0ZSBhbmQgcGxhY2Ugb2YgcHVyY2hhc2UsIGFsb25nIHdpdGggYSBkZXRhaWxlZCBkZXNjcmlwdGlvbiBhbmQgc3VwcG9ydGluZyBldmlkZW5jZSBvZiB0aGUgaXNzdWUuCgo1LiAqKlJlc29sdXRpb24gT3B0aW9ucyoqOgotIFVwb24gcmVjZWlwdCBvZiB0aGUgd2FycmFudHkgY2xhaW0sIG91ciBjdXN0b21lciBzdXBwb3J0IHRlYW0gd2lsbCBhc3Nlc3MgdGhlIGlzc3VlIGFuZCBkZXRlcm1pbmUgdGhlIGFwcHJvcHJpYXRlIHJlc29sdXRpb24uCi0gT3B0aW9ucyBtYXkgaW5jbHVkZSByZXBhaXIsIHJlcGxhY2VtZW50IG9mIHRoZSBkZWZlY3RpdmUgcGFydHMsIG9yLCBpZiBuZWNlc3NhcnksIHJlcGxhY2VtZW50IG9mIHRoZSBlbnRpcmUgdGVudC4KCjYuICoqTGltaXRhdGlvbnMgYW5kIEV4Y2x1c2lvbnMqKjoKLSBPdXIgd2FycmFudHkgaXMgbm9uLXRyYW5zZmVyYWJsZSBhbmQgYXBwbGllcyBvbmx5IHRvIHRoZSBvcmlnaW5hbCBwdXJjaGFzZXIgb2YgdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQuCi0gVGhlIHdhcnJhbnR5IGRvZXMgbm90IGNvdmVyIGFueSBpbmNpZGVudGFsIG9yIGNvbnNlcXVlbnRpYWwgZGFtYWdlcyByZXN1bHRpbmcgZnJvbSB0aGUgdXNlIG9yIGluYWJpbGl0eSB0byB1c2UgdGhlIHRlbnQuCi0gQW55IHVuYXV0aG9yaXplZCByZXBhaXJzIG9yIGFsdGVyYXRpb25zIHZvaWQgdGhlIHdhcnJhbnR5LgoKIyMjIENvbnRhY3QgSW5mb3JtYXRpb24KCklmIHlvdSBoYXZlIGFueSBxdWVzdGlvbnMgb3IgbmVlZCBmdXJ0aGVyIGFzc2lzdGFuY2UsIHBsZWFzZSBjb250YWN0IG91ciBjdXN0b21lciBzdXBwb3J0OgoKLSBDdXN0b21lciBTdXBwb3J0IFBob25lOiArMS04MDAtMTIzLTQ1NjcKLSBDdXN0b21lciBTdXBwb3J0IEVtYWlsOiBzdXBwb3J0QGV4YW1wbGUuY29tCgojIyBSZXR1cm4gUG9saWN5Ci0gKipJZiBNZW1iZXJzaGlwIHN0YXR1cyAiTm9uZSAgICAgICAgIjoqKiAgUmV0dXJucyBhcmUgYWNjZXB0ZWQgd2l0aGluIDMwIGRheXMgb2YgcHVyY2hhc2UsIHByb3ZpZGVkIHRoZSB0ZW50IGlzIHVudXNlZCwgdW5kYW1hZ2VkIGFuZCBpbiBpdHMgb3JpZ2luYWwgcGFja2FnaW5nLiBDdXN0b21lciBpcyByZXNwb25zaWJsZSBmb3IgdGhlIGNvc3Qgb2YgcmV0dXJuIHNoaXBwaW5nLiBPbmNlIHRoZSByZXR1cm5lZCBpdGVtIGlzIHJlY2VpdmVkLCBhIHJlZnVuZCB3aWxsIGJlIGlzc3VlZCBmb3IgdGhlIGNvc3Qgb2YgdGhlIGl0ZW0gbWludXMgYSAxMCUgcmVzdG9ja2luZyBmZWUuIElmIHRoZSBpdGVtIHdhcyBkYW1hZ2VkIGR1cmluZyBzaGlwcGluZyBvciBpZiB0aGVyZSBpcyBhIGRlZmVjdCwgdGhlIGN1c3RvbWVyIHNob3VsZCBjb250YWN0IGN1c3RvbWVyIHNlcnZpY2Ugd2l0aGluIDcgZGF5cyBvZiByZWNlaXZpbmcgdGhlIGl0ZW0uCi0gKipJZiBNZW1iZXJzaGlwIHN0YXR1cyAiR29sZCI6KiogIFJldHVybnMgYXJlIGFjY2VwdGVkIHdpdGhpbiA2MCBkYXlzIG9mIHB1cmNoYXNlLCBwcm92aWRlZCB0aGUgdGVudCBpcyB1bnVzZWQsIHVuZGFtYWdlZCBhbmQgaW4gaXRzIG9yaWdpbmFsIHBhY2thZ2luZy4gRnJlZSByZXR1cm4gc2hpcHBpbmcgaXMgcHJvdmlkZWQuIE9uY2UgdGhlIHJldHVybmVkIGl0ZW0gaXMgcmVjZWl2ZWQsIGEgZnVsbCByZWZ1bmQgd2lsbCBiZSBpc3N1ZWQuIElmIHRoZSBpdGVtIHdhcyBkYW1hZ2VkIGR1cmluZyBzaGlwcGluZyBvciBpZiB0aGVyZSBpcyBhIGRlZmVjdCwgdGhlIGN1c3RvbWVyIHNob3VsZCBjb250YWN0IGN1c3RvbWVyIHNlcnZpY2Ugd2l0aGluIDcgZGF5cyBvZiByZWNlaXZpbmcgdGhlIGl0ZW0uCi0gKipJZiBNZW1iZXJzaGlwIHN0YXR1cyAiUGxhdGludW0iOioqICBSZXR1cm5zIGFyZSBhY2NlcHRlZCB3aXRoaW4gOTAgZGF5cyBvZiBwdXJjaGFzZSwgcHJvdmlkZWQgdGhlIHRlbnQgaXMgdW51c2VkLCB1bmRhbWFnZWQgYW5kIGluIGl0cyBvcmlnaW5hbCBwYWNrYWdpbmcuIEZyZWUgcmV0dXJuIHNoaXBwaW5nIGlzIHByb3ZpZGVkLCBhbmQgYSBmdWxsIHJlZnVuZCB3aWxsIGJlIGlzc3VlZC4gSWYgdGhlIGl0ZW0gd2FzIGRhbWFnZWQgZHVyaW5nIHNoaXBwaW5nIG9yIGlmIHRoZXJlIGlzIGEgZGVmZWN0LCB0aGUgY3VzdG9tZXIgc2hvdWxkIGNvbnRhY3QgY3VzdG9tZXIgc2VydmljZSB3aXRoaW4gNyBkYXlzIG9mIHJlY2VpdmluZyB0aGUgaXRlbS4KCiMjIFJldmlld3MKMSkgKipSYXRpbmc6KiogNQoqKlJldmlldzoqKiBJIGFtIGV4dHJlbWVseSBoYXBweSB3aXRoIG15IFRyYWlsTWFzdGVyIFg0IFRlbnQhIEl0J3Mgc3BhY2lvdXMsIGVhc3kgdG8gc2V0IHVwLCBhbmQga2VwdCBtZSBkcnkgZHVyaW5nIGEgc3Rvcm0uIFRoZSBVViBwcm90ZWN0aW9uIGlzIGEgZ3JlYXQgYWRkaXRpb24gdG9vLiBIaWdobHkgcmVjb21tZW5kIGl0IHRvIGFueW9uZSB3aG8gbG92ZXMgY2FtcGluZyEKCjIpICoqUmF0aW5nOioqIDMKKipSZXZpZXc6KiogSSBib3VnaHQgdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQsIGFuZCB3aGlsZSBpdCdzIHdhdGVycHJvb2YgYW5kIGhhcyBhIHNwYWNpb3VzIGludGVyaW9yLCBJIGZvdW5kIGl0IGEgYml0IGRpZmZpY3VsdCB0byBzZXQgdXAuIEl0J3MgYSBkZWNlbnQgdGVudCwgYnV0IEkgd2lzaCBpdCB3ZXJlIGVhc2llciB0byBhc3NlbWJsZS4KCjMpICoqUmF0aW5nOioqIDUKKipSZXZpZXc6KiogVGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQgaXMgYSBmYW50YXN0aWMgaW52ZXN0bWVudCBmb3IgYW55IHNlcmlvdXMgY2FtcGVyLiBUaGUgZWFzeSBzZXR1cCBhbmQgc3BhY2lvdXMgaW50ZXJpb3IgbWFrZSBpdCBwZXJmZWN0IGZvciBleHRlbmRlZCB0cmlwcywgYW5kIHRoZSB3YXRlcnByb29mIGRlc2lnbiBrZXB0IHVzIGRyeSBpbiBoZWF2eSByYWluLgoKNCkgKipSYXRpbmc6KiogNAoqKlJldmlldzoqKiBJIGxpa2UgdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQsIGJ1dCBJIHdpc2ggaXQgY2FtZSBpbiBtb3JlIGNvbG9ycy4gSXQncyBjb21mb3J0YWJsZSBhbmQgaGFzIG1hbnkgdXNlZnVsIGZlYXR1cmVzLCBidXQgdGhlIGdyZWVuIGNvbG9yIGp1c3QgaXNuJ3QgbXkgZmF2b3JpdGUuIE92ZXJhbGwsIGl0J3MgYSBnb29kIHRlbnQuCgo1KSAqKlJhdGluZzoqKiA1CioqUmV2aWV3OioqIFRoaXMgdGVudCBpcyBwZXJmZWN0IGZvciBteSBmYW1pbHkgY2FtcGluZyB0cmlwcy4gVGhlIHNwYWNpb3VzIGludGVyaW9yIGFuZCBjb252ZW5pZW50IHN0b3JhZ2UgcG9ja2V0IG1ha2UgaXQgZWFzeSB0byBzdGF5IG9yZ2FuaXplZC4gSXQncyBhbHNvIHN1cGVyIGVhc3kgdG8gc2V0IHVwLCBtYWtpbmcgaXQgYSBncmVhdCBhZGRpdGlvbiB0byBvdXIgZ2Vhci4KCiMjIEZBUQoxKSBDYW4gdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQgYmUgdXNlZCBpbiB3aW50ZXIgY29uZGl0aW9ucz8KVGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQgaXMgZGVzaWduZWQgZm9yIDMtc2Vhc29uIHVzZSBhbmQgbWF5IG5vdCBiZSBzdWl0YWJsZSBmb3IgZXh0cmVtZSB3aW50ZXIgY29uZGl0aW9ucyB3aXRoIGhlYXZ5IHNub3cgYW5kIGZyZWV6aW5nIHRlbXBlcmF0dXJlcy4KCjIpIEhvdyBtYW55IHBlb3BsZSBjYW4gY29tZm9ydGFibHkgc2xlZXAgaW4gdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQ/ClRoZSBUcmFpbE1hc3RlciBYNCBUZW50IGNhbiBjb21mb3J0YWJseSBhY2NvbW1vZGF0ZSB1cCB0byA0IHBlb3BsZSB3aXRoIHJvb20gZm9yIHRoZWlyIGdlYXIuCgozKSBJcyB0aGVyZSBhIHdhcnJhbnR5IG9uIHRoZSBUcmFpbE1hc3RlciBYNCBUZW50PwpZZXMsIHRoZSBUcmFpbE1hc3RlciBYNCBUZW50IGNvbWVzIHdpdGggYSAyLXllYXIgbGltaXRlZCB3YXJyYW50eSBhZ2FpbnN0IG1hbnVmYWN0dXJpbmcgZGVmZWN0cy4KCjQpIEFyZSB0aGVyZSBhbnkgYWRkaXRpb25hbCBhY2Nlc3NvcmllcyBpbmNsdWRlZCB3aXRoIHRoZSBUcmFpbE1hc3RlciBYNCBUZW50PwpUaGUgVHJhaWxNYXN0ZXIgWDQgVGVudCBpbmNsdWRlcyBhIHJhaW5mbHksIHRlbnQgc3Rha2VzLCBndXkgbGluZXMsIGFuZCBhIGNhcnJ5IGJhZyBmb3IgZWFzeSB0cmFuc3BvcnQuCgo1KSBDYW4gdGhlIFRyYWlsTWFzdGVyIFg0IFRlbnQgYmUgZWFzaWx5IGNhcnJpZWQgZHVyaW5nIGhpa2VzPwpZZXMsIHRoZSBUcmFpbE1hc3RlciBYNCBUZW50IHdlaWdocyBqdXN0IDEybGJzLCBhbmQgd2hlbiBwYWNrZWQgaW4gaXRzIGNhcnJ5IGJhZywgaXQgY2FuIGJlIGNvbWZvcnRhYmx5IGNhcnJpZWQgZHVyaW5nIGhpa2VzLg==</markmap-data></div>
 </details>
 <hr/>
 <h3 id="3-product-catalog-info">3. Product Catalog Info<a class="headerlink" href="#3-product-catalog-info" title="Permanent link">¶</a></h3>
@@ -1396,50 +1428,67 @@ Yes, the TrailMaster X4 Tent weighs just 12lbs, and when packed in its carry bag
 </aside>
 </div>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
 <script type="text/javascript">(function initializeMarkmap() {
     const transformer = new markmap.Transformer();
+    const preloadScripts = transformer.plugins
+        .flatMap((plugin) => plugin.config?.preloadScripts || [])
+        .map((item) => transformer.resolveJS(item));
     const assets = transformer.getAssets();
     const loading = Promise.all([
         assets.styles && markmap.loadCSS(assets.styles),
-        assets.scripts && markmap.loadJS(assets.scripts),
+        markmap.loadJS([...preloadScripts, ...assets.scripts]),
     ]);
 
     function parseData(content) {
         const { root, frontmatter } = transformer.transform(content);
         let options = markmap.deriveOptions(frontmatter?.markmap);
-        options = Object.assign({
-            fitRatio: 0.85,
-        }, options);
+        options = Object.assign(
+            {
+                fitRatio: 0.85,
+            },
+            options
+        );
         return { root, options };
     }
 
     function resetMarkmap(m, el) {
-        const { minX, maxX, minY, maxY } = m.state;
-        const height = el.clientWidth * (maxX - minX) / (maxY - minY);
+        if (!m.state.rect) return;
+        const { x1, y1, x2, y2 } = m.state.rect;
+        const height = (el.offsetWidth / (x2 - x1)) * (y2 - y1);
         el.style.height = height + "px";
         m.fit();
     }
 
+    function decodeBase64(encoded) {
+        const binary = atob(encoded);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < bytes.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return new TextDecoder().decode(bytes);
+    }
+
     function renderMarkmap(el) {
-        let svg = el.querySelector('svg');
-        if (svg) return;
-        const content = el.textContent;
-        el.innerHTML = '<svg>';
+        const dataEl = el.querySelector("markmap-data");
+        if (!dataEl) return;
+        let content = el.textContent;
+        if (dataEl.getAttribute("encoding") === "base64") {
+            content = decodeBase64(content);
+        }
+        el.innerHTML = "<svg>";
         svg = el.firstChild;
         const { root, options } = parseData(content);
-        const m = markmap.Markmap.create(svg, options, root);
-        resetMarkmap(m, el);
-        transformer.hooks.retransform.tap(() => {
-            const { root, options } = parseData(content);
-            m.setData(root, options);
+        const m = markmap.Markmap.create(svg, options);
+        m.setData(root);
+        requestAnimationFrame(() => {
             resetMarkmap(m, el);
         });
     }
 
     function updateMarkmaps(node) {
-        for (const el of node.querySelectorAll('.mkdocs-markmap')) {
+        for (const el of node.querySelectorAll(".mkdocs-markmap")) {
             renderMarkmap(el);
         }
     }
@@ -1447,7 +1496,7 @@ Yes, the TrailMaster X4 Tent weighs just 12lbs, and when packed in its carry bag
     loading.then(() => {
         const observer = new MutationObserver((mutationList) => {
             for (const mutation of mutationList) {
-                if (mutation.type === 'childList') {
+                if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
                         updateMarkmaps(node);
                     }
